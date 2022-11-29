@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -31,11 +32,13 @@ Route::get('/contact', function () {
     ]);
 })->name('contact');
 
-Route::get('/{post:slug}', [PostController::class, 'show']);
+Route::get('/post{post:slug}', [PostController::class, 'show']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+         ->name('dashboard');
+    Route::get('/logout', [DashboardController::class, 'logout']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
