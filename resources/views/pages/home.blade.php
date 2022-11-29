@@ -11,9 +11,8 @@
                                 class="img-fluid" src="assets/img/test_image.jpg" style="height: 170px;"
                                 loading="lazy"></a>
                         <div style="padding-left: 10px;">
-                            <h3 class="d-xl-flex">Cras justo odio, dapibus ac facilisis in, egestas eget<br></h3>
-                            <p class="d-xl-flex">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo
-                                odio,<br></p>
+                            <h3 class="d-xl-flex">{{ $post->title }}<br></h3>
+                            <p class="d-xl-flex">{{ $post->excerpt }}<br></p>
                             <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
                                     height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                                 <div>
