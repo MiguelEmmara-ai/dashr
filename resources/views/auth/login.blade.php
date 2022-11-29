@@ -23,13 +23,32 @@
                                 </svg></div>
                             <form class="text-center" method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <div class="mb-3"><input class="form-control" type="email" name="email"
-                                        placeholder="Email" autofocus="" required=""></div>
-                                <div class="mb-3"><input class="form-control" type="password" name="password"
-                                        placeholder="Password" required=""></div>
+                                <div class="mb-3">
+                                    <input class="form-control @error('email') is-invalid @enderror" type="email"
+                                        name="email" placeholder="Email" autofocus="" required=""
+                                        value="{{ old('email') }}">
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control @error('password') is-invalid @enderror" type="password"
+                                        name="password" placeholder="Password" required="">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
                                 <div class="mb-3"><button class="btn btn-primary d-block w-100"
                                         type="submit">Login</button></div>
-                                <p class="text-muted">Forgot your password?</p><a href="{{ route('register') }}">Register Here</a>
+                                <p class="text-muted">Forgot your password?</p><a href="{{ route('register') }}">Register
+                                    Here</a>
                             </form>
                         </div>
                     </div>
