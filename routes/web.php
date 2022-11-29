@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::get('/contact', function () {
         "title" => "Contact Us",
     ]);
 })->name('contact');
+
+Route::get('/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

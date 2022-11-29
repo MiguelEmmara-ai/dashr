@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,6 +16,7 @@ class HomeController extends Controller
     {
         return view('pages.home', [
             'title' => 'Dashr | Home Page',
+            "posts" => Post::all(),
         ]); 
     }
 

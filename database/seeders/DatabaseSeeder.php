@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -28,5 +30,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'miguelemmara123@gmail.com',
             'password' => Hash::make('admin123'),
         ]);
+
+        Post::factory(8)->create();
     }
 }
