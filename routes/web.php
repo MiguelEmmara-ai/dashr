@@ -22,7 +22,13 @@ Route::get('/about', function () {
     return view('pages.about', [
         "title" => "About Us",
     ]);
-});
+})->name('about');
+
+Route::get('/contact', function () {
+    return view('pages.contact', [
+        "title" => "Contact Us",
+    ]);
+})->name('contact');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

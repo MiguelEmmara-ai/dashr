@@ -15,19 +15,19 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('prepend-style')
-    @include('includes.frontend.style')
+    @include('includes.admin.style')
     @stack('addon-style')
 
 </head>
 
 <body style="background: #f3f2f3;">
 
-    @include('includes.frontend.navbar')
+    @include('includes.admin.navbar')
     @yield('content')
-    @include('includes.frontend.footer')
+    @include('includes.admin.footer')
 
     @stack('prepend-script')
-    @include('includes.frontend.script')
+    @include('includes.admin.script')
     @stack('addon-script')
 </body>
 
