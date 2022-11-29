@@ -21,6 +21,7 @@
 </head>
 
 <body style="background: #f3f2f3;">
+    @include('sweetalert::alert')
 
     @include('includes.admin.navbar')
     @yield('content')
