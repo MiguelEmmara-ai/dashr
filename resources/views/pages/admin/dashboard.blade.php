@@ -2,6 +2,11 @@
 
 @section('content')
     <p>This is Dashboard Page</p>
+    <!-- Authentication -->
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button class="btn" type="submit">Log Out</button>
+    </form>
 @endsection
 
 {{-- <x-app-layout>
