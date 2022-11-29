@@ -1,0 +1,12 @@
+@media (min-width: 768px) {
+  .navbar-brand {
+    margin: -25px;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-brand {
+    margin-left: 0px;
+  }
+}
+
