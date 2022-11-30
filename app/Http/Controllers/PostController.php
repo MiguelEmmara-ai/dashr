@@ -112,4 +112,28 @@ class PostController extends Controller
 
         return redirect("/post/$slug");
     }
+
+    public static function nextPost($id)
+    {
+        // get the current user
+        $post = Post::find($id);
+        
+        // get next post id
+        $next = Post::where('id', '>', $post->id)->min('id');
+        $slug = Post::select('slug')->where('id', $next)->get()->value('slug');
+
+        return ("/post/$slug");
+    }
+
+    public static function prevPost($id)
+    {
+        // get the current user
+        $post = Post::find($id);
+        
+        // get previous user id
+        $previous = Post::where('id', '<', $post->id)->max('id');
+        $slug = Post::select('slug')->where('id', $previous)->get()->value('slug');
+
+        return ("/post/$slug");
+    }
 }
