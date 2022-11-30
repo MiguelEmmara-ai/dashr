@@ -8,10 +8,14 @@
                     <div class="row mb-2" style="padding-bottom: 10px;border-width: 2px;padding-top: 10px;">
                         <div class="col-md-12">
                             <div class="d-xl-flex align-items-xl-center"><a href="/post/{{ $post->slug }}"><img
-                                        class="img-fluid" src="https://picsum.photos/500/400" style="height: 170px;"
+                                        class="img-fluid" src="https://picsum.photos/260/180" class="img-fluid"
                                         loading="lazy"></a>
                                 <div style="padding-left: 10px;">
-                                    <h3 class="d-xl-flex">{{ $post->title }}<br></h3>
+                                    <div class="article">
+                                        <a href="/post/{{ $post->slug }}">
+                                            <h3 class="d-xl-flex">{{ $post->title }}<br></h3>
+                                        </a>
+                                    </div>
                                     <p class="d-xl-flex">{{ $post->excerpt }}<br></p>
                                     <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover"
                                             width="50" height="50"
@@ -33,8 +37,8 @@
     </section>
 
     {{-- Pagination --}}
-    <div class="container d-xl-flex justify-content-xl-center">
-        <div class="row" style="padding: 2px;">
+    <div class="container d-flex justify-content-center">
+        <div class="row">
             <div class="col">
                 <nav>
                     <ul class="pagination">
