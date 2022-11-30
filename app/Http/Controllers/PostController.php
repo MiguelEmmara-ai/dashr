@@ -64,7 +64,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('pages.home', [
+        return view('pages.post', [
             "title" => "Post",
             "post" => $post
         ]);
@@ -102,5 +102,14 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function randomArticle(Post $post)
+    {
+        $post = Post::all();
+        $random_id = $post->random()->id;
+        $slug = Post::select('slug')->where('id', $random_id)->get()->value('slug');
+
+        return redirect("/post/$slug");
     }
 }

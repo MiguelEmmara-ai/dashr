@@ -32,11 +32,13 @@ Route::get('/contact', function () {
     ]);
 })->name('contact');
 
-Route::get('/post{post:slug}', [PostController::class, 'show']);
+Route::get('/post/{post:slug}', [PostController::class, 'show']);
+
+Route::get('/random-post', [PostController::class, 'randomArticle']);
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
-         ->name('dashboard');
+        ->name('dashboard');
     Route::get('/logout', [DashboardController::class, 'logout']);
 });
 

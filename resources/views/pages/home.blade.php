@@ -7,7 +7,7 @@
         <div class="container" style="background: #ffffff;margin-top: 10px;margin-bottom: 10px;">
             <div class="row mb-2" style="padding-bottom: 10px;border-width: 2px;padding-top: 10px;">
                 <div class="col-md-12">
-                    <div class="d-xl-flex align-items-xl-center"><a href="/{{ $post->slug }}"><img
+                    <div class="d-xl-flex align-items-xl-center"><a href="/post/{{ $post->slug }}"><img
                                 class="img-fluid" src="assets/img/test_image.jpg" style="height: 170px;"
                                 loading="lazy"></a>
                         <div style="padding-left: 10px;">

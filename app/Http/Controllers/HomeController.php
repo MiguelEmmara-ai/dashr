@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
         return view('pages.home', [
             'title' => 'Dashr | Home Page',
-            'posts' => Post::all(),
-        ]); 
+            'posts' => Post::latest()->paginate(8),
+        ]);
     }
 }

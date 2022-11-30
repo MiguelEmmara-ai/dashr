@@ -23,7 +23,7 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Random Article</a></li>
+                <li class="nav-item"><a class="nav-link" href="/random-post">Random Article</a></li>
             </ul><a class="btn btn-primary ms-md-2" role="button" href="{{ route('login') }}" style="margin-right: 10px;">Log
                 In</a><a class="btn btn-primary ms-md-2" role="button" href="{{ route('register') }}"
                 style="background: rgb(255,255,255);color: rgb(0,0,0);">Sign Up</a>

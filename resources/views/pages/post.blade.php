@@ -7,12 +7,12 @@
                 <div class="col-md-12">
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><span>Home</span></a></li>
-                            <li class="breadcrumb-item"><a href="#"><span>Posts</span></a></li>
-                            <li class="breadcrumb-item"><a href="#"><span>Lorem</span></a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Home</span></a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Posts</span></a></li>
+                            <li class="breadcrumb-item"><a href="{{ $post->slug }}"><span>{{ $post->title }}</span></a></li>
                         </ol>
-                        <h1>Cras justo odio, dapibus ac facilisis in, egestas eget<br></h1><img
-                            src="assets/img/test_image.jpg" style="height: 700px;">
+                        <h1>{{ $post->title }}<br></h1><img
+                            src="{{ asset('assets/img/test_image.jpg') }}" style="height: 700px;">
                         <p style="width: 1000px;"><span style="color: rgb(0, 0, 0);">Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit. Fusce eget luctus justo, nec gravida risus. Cras a pretium tortor. Fusce
                                 accumsan vitae orci vel accumsan. Cras nec dictum risus, vitae egestas enim. Cras viverra
@@ -44,4 +44,3 @@
         </div>
     </section>
 @endsection
-
