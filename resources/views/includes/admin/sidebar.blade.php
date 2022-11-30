@@ -60,7 +60,7 @@
      <ul class="menu-inner py-1">
          <!-- Dashboard -->
          <li class="menu-item active">
-             <a href="index.html" class="menu-link">
+             <a href="{{ route('dashboard') }}" class="menu-link">
                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
                  <div data-i18n="Analytics">Dashboard</div>
              </a>
@@ -156,7 +156,7 @@
 
          <!-- Posts -->
          <li class="menu-item">
-             <a href="cards-basic.html" class="menu-link">
+             <a href="{{ route('dashboard-posts') }}" class="menu-link">
                  <i class="menu-icon tf-icons bx bx-collection"></i>
                  <div data-i18n="Basic">Posts</div>
              </a>

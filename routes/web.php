@@ -38,6 +38,8 @@ Route::get('/random-post', [PostController::class, 'randomArticle']);
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+    Route::get('/dashboard/posts', [DashboardController::class, 'showAllPosts'])
+        ->name('dashboard-posts');
     Route::get('/logout', [DashboardController::class, 'logout']);
 });
 
