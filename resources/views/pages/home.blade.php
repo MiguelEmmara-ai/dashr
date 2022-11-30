@@ -8,7 +8,7 @@
                     <div class="row mb-2" style="padding-bottom: 10px;border-width: 2px;padding-top: 10px;">
                         <div class="col-md-12">
                             <div class="d-xl-flex align-items-xl-center"><a href="/post/{{ $post->slug }}"><img
-                                        class="img-fluid" src="assets/img/test_image.jpg" style="height: 170px;"
+                                        class="img-fluid" src="https://picsum.photos/500/400" style="height: 170px;"
                                         loading="lazy"></a>
                                 <div style="padding-left: 10px;">
                                     <h3 class="d-xl-flex">{{ $post->title }}<br></h3>
