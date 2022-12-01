@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,6 +56,7 @@ class DashboardController extends Controller
     {
         return view('pages.admin.posts', [
             "title" => "Admin Dashboard",
+            "posts" => Post::latest()->paginate(7)->withQueryString(),
             "user" => Auth::user()
         ]);
     }
