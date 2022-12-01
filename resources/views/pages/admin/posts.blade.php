@@ -48,8 +48,16 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="javascript:void(0);"><i
                                                         class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-trash me-1"></i> Delete</a>
+
+                                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+
+                                                    @method('delete')
+                                                    <button class="dropdown-item">
+                                                        <i class="bx bx-trash me-1"></i> Delete</button>
+                                                </form>
+
                                             </div>
                                         </div>
                                     </td>
@@ -75,7 +83,8 @@
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
-                    © <?php echo date('Y'); ?> , made with ❤️ by
+                    ©
+                    <?php echo date('Y'); ?> , made with ❤️ by
                     <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                 </div>
             </div>

@@ -52,15 +52,6 @@ class DashboardController extends Controller
         //
     }
 
-    public function showAllPosts()
-    {
-        return view('pages.admin.posts', [
-            "title" => "Admin Dashboard",
-            "posts" => Post::latest()->paginate(7)->withQueryString(),
-            "user" => Auth::user()
-        ]);
-    }
-
     /**
      * Display the specified resource.
      *

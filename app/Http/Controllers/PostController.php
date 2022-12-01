@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -70,6 +71,15 @@ class PostController extends Controller
         ]);
     }
 
+    public function showAllPosts()
+    {
+        return view('pages.admin.posts', [
+            "title" => "Admin Dashboard",
+            "posts" => Post::latest()->paginate(7)->withQueryString(),
+            "user" => Auth::user()
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -99,9 +109,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('dashboard-posts')->with('success', 'Success Delete Post');
     }
 
     public function randomArticle(Post $post)
@@ -117,7 +130,7 @@ class PostController extends Controller
     {
         // get the current user
         $post = Post::find($id);
-        
+
         // get next post id
         $next = Post::where('id', '>', $post->id)->min('id');
         $slug = Post::select('slug')->where('id', $next)->get()->value('slug');
@@ -129,7 +142,7 @@ class PostController extends Controller
     {
         // get the current user
         $post = Post::find($id);
-        
+
         // get previous user id
         $previous = Post::where('id', '<', $post->id)->max('id');
         $slug = Post::select('slug')->where('id', $previous)->get()->value('slug');
