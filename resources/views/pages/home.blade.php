@@ -22,7 +22,7 @@
                                             src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                                         <div>
                                             <p class="fw-bold mb-0">John Smith</p>
-                                            <p class="text-muted mb-0">Erat netus</p>
+                                            <p class="text-muted mb-0 article"><a href="{{ route('categories') }}">Category</a>: {{ $post->category->name }}</p>
                                         </div>
                                     </div>
                                 </div>
