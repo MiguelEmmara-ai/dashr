@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -31,6 +32,9 @@ Route::get('/contact', function () {
         "title" => "Contact Us",
     ]);
 })->name('contact');
+
+Route::get('/categories', [CategoryController::class, 'index'])
+    ->name('categories');
 
 Route::get('/post/{post:slug}', [PostController::class, 'show']);
 Route::get('/random-post', [PostController::class, 'randomArticle']);

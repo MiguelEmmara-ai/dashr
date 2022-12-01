@@ -15,16 +15,12 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active" href="{{ route('home') }}">Home</a></li>
-                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
-                        data-bs-toggle="dropdown" href="#">Categories</a>
-                    <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a
-                            class="dropdown-item" href="#">Second Item</a><a class="dropdown-item"
-                            href="#">Third Item</a></div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Categories</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="/random-post">Random Article</a></li>
-            </ul><a class="btn btn-primary ms-md-2" role="button" href="{{ route('login') }}" style="margin-right: 10px;">Log
+            </ul><a class="btn btn-primary ms-md-2" role="button" href="{{ route('login') }}"
+                style="margin-right: 10px;">Log
                 In</a><a class="btn btn-primary ms-md-2" role="button" href="{{ route('register') }}"
                 style="background: rgb(255,255,255);color: rgb(0,0,0);">Sign Up</a>
         </div>
