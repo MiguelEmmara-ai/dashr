@@ -16,7 +16,7 @@
                                         Lets's Create A Good Article!
                                     </p>
 
-                                    <a href="javascript:;" class="btn btn-sm btn-outline-primary">View
+                                    <a href="{{ route('dashboard-posts') }}" class="btn btn-sm btn-outline-primary">View
                                         Posts</a>
                                     <a href="javascript:;" class="btn btn-sm btn-outline-primary">Create
                                         Post</a>
