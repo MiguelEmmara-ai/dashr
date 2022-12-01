@@ -2,11 +2,11 @@
 
 @section('content')
     <section>
-        <div class="container">
+        <div class="container pb-3 pt-3 mb-3 mt-3" style="background: #ffffff;">
             <div class="row">
                 <div class="col-md-12">
                     <div>
-                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="d-none d-sm-block pt-3">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="d-none d-sm-block">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Home</span></a></li>
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Posts</span></a></li>
