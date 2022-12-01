@@ -176,6 +176,13 @@ class PostController extends Controller
         $next = Post::where('id', '>', $post->id)->min('id');
         $slug = Post::select('slug')->where('id', $next)->get()->value('slug');
 
+        // get max post id
+        $max = Post::where('id', $post->id)->max('id');
+
+        if ($post->id == $max) {
+            return ("/");
+        }
+
         return ("/post/$slug");
     }
 
@@ -188,6 +195,10 @@ class PostController extends Controller
         $previous = Post::where('id', '<', $post->id)->max('id');
         $slug = Post::select('slug')->where('id', $previous)->get()->value('slug');
 
+        if ($post->id == "1") {
+            return ("/");
+        }
+        
         return ("/post/$slug");
     }
 
