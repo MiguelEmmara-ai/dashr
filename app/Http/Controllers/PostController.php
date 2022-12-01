@@ -55,7 +55,7 @@ class PostController extends Controller
     {
         return view('pages.admin.create-posts', [
             "title" => "Admin Dashboard",
-            'categories' => Category::all(),
+            "categories" => Category::all(),
             "user" => Auth::user()
         ]);
     }
@@ -107,9 +107,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('pages.admin.edit-post')->with([
+            "post" => $post,
+            "categories" => Category::all(),
+            "user" => Auth::user()
+        ]);
     }
 
     /**
@@ -119,9 +125,23 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $post = Post::findOrFail($id);
+
+        // Check if the slug has been change
+        if ($request->slug != $post->slug) {
+            $data['slug'] = 'required|unique:posts';
+        }
+
+        $data['user_id'] = auth()->user()->id;
+        $data['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        $post->update($data);
+
+        return redirect()->route('dashboard-posts')->with('success', "Success Update Post [$request->title]");
     }
 
     /**

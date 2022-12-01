@@ -8,16 +8,18 @@
             <!-- Form controls -->
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <h5 class="card-header">Create Post</h5>
+                    <h5 class="card-header">Edit Post</h5>
                     <div class="card-body">
 
-                        <form action="{{ route('posts.store') }}" method="POST" class="mb-5" enctype="multipart/form-data">
+                        <form action="{{ route('posts.update', $post->id) }}" method="POST" class="mb-5"
+                            enctype="multipart/form-data">
+                            @method('PUT')
                             @csrf
                             <div class="form-group mb-3">
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror"
                                     name="title" id="title" required placeholder="Amazing title goes here..."
-                                    autofocus value="{{ old('title') }}">
+                                    autofocus value="{{ old('title') ? old('title') : $post->title }}">
                                 @error('title')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -26,7 +28,7 @@
                             <div class="form-group mb-3">
                                 <label for="slug" class="form-label">Slug</label>
                                 <input type="text" class="form-control @error('slug') is-invalid @enderror"
-                                    name="slug" id="slug" required value="{{ old('slug') }}">
+                                    name="slug" id="slug" required value="{{ old('slug', $post->slug) }}">
                                 @error('slug')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -36,7 +38,7 @@
                                 <label for="category" class="form-label">Category</label>
                                 <select class="form-select" name="category_id">
                                     @foreach ($categories as $category)
-                                        @if (old('category_id') == $category->id)
+                                        @if (old('category_id', $post->category_id) == $category->id)
                                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                         @else
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -47,16 +49,16 @@
 
                             <div class="form-group mb-3">
                                 <label for="body" class="form-label">Body</label>
-                                <input id="body" type="hidden" name="body" required value="{{ old('body') }}">
+                                <input id="body" type="hidden" name="body" required
+                                    value="{{ old('body', $post->body) }}">
                                 <trix-editor input="body"></trix-editor>
                                 @error('body')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
-
                             <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-primary">Create Post</button>
+                                <button type="submit" class="btn btn-primary">Update Post</button>
                             </div>
                         </form>
 
