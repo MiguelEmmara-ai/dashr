@@ -18,7 +18,7 @@
 
                                     <a href="{{ route('dashboard-posts') }}" class="btn btn-sm btn-outline-primary">View
                                         Posts</a>
-                                    <a href="javascript:;" class="btn btn-sm btn-outline-primary">Create
+                                    <a href="{{ route('posts.create') }}" class="btn btn-sm btn-outline-primary">Create
                                         Post</a>
                                 </div>
                             </div>
