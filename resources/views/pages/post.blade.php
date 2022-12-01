@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div>
-                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="d-none d-sm-block">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="d-none d-sm-block pt-3">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Home</span></a></li>
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Posts</span></a></li>
