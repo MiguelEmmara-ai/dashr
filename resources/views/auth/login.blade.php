@@ -24,7 +24,7 @@
                             <form class="text-center col-lg-10" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <input class="form-control @error('email') is-invalid @enderror" type="email"
                                         name="email" placeholder="Email" autofocus="" required=""
                                         value="{{ old('email') }}">
@@ -34,7 +34,20 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div> --}}
+
+                                <div class="mb-3">
+                                    <input class="form-control @error('username') is-invalid @enderror" type="text"
+                                        name="username" placeholder="Username" autofocus="" required=""
+                                        value="{{ old('username') }}">
+
+                                    @error('username')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
+
                                 <div class="mb-3">
                                     <input class="form-control @error('password') is-invalid @enderror" type="password"
                                         name="password" placeholder="Password" required="">
