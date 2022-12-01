@@ -51,6 +51,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'personal'
         ]);
 
-        Post::factory(8)->create();
+        Post::factory(20)->create();
     }
 }

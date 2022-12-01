@@ -38,22 +38,7 @@
 
     {{-- Pagination --}}
     <div class="container d-flex justify-content-center">
-        <div class="row">
-            <div class="col">
-                <nav>
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span
-                                    aria-hidden="true">«</span></a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span
-                                    aria-hidden="true">»</span></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        {{ $posts->links() }}
     </div>
+
 @endsection
