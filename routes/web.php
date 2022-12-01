@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/all-posts', [PostController::class, 'showAllPosts'])
         ->name('dashboard-posts');
+    Route::get('/dashboard/all-posts/checkSlug', [PostController::class, 'checkSlug'])
+        ->name('checkSlug');
     Route::resource('/dashboard/posts', PostController::class);
 });
 

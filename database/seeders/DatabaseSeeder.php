@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -34,6 +35,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(3)->create();
+
+        Category::create([
+            'name' => 'Web Programming',
+            'slug' => 'web-programming'
+        ]);
+
+        Category::create([
+            'name' => 'Programming',
+            'slug' => 'programming'
+        ]);
+
+        Category::create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
 
         Post::factory(8)->create();
     }

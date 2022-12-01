@@ -21,7 +21,9 @@
 
 <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-<!-- Page CSS -->
+<!-- Trix CSS -->
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 
 <!-- Helpers -->
 <script src="{{ asset('/admin/assets/vendor/js/helpers.j') }}s"></script>
+<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>

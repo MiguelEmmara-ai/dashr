@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -34,6 +38,12 @@ class PostController extends Controller
         //     "active" => "posts",
         //     "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
         // ]);
+
+        return view('pages.admin.posts', [
+            "title" => "Admin Dashboard",
+            "posts" => Post::latest()->paginate(7)->withQueryString(),
+            "user" => Auth::user()
+        ]);
     }
 
     /**
@@ -43,7 +53,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.create-posts', [
+            "title" => "Admin Dashboard",
+            'categories' => Category::all(),
+            "user" => Auth::user()
+        ]);
     }
 
     /**
@@ -54,7 +68,14 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $data = $request->all();
+
+        $data['user_id'] = auth()->user()->id;
+        $data['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        Post::create($data);
+
+        return redirect()->route('dashboard-posts')->with('success', "Success Create Post [$request->title]");
     }
 
     /**
@@ -148,5 +169,12 @@ class PostController extends Controller
         $slug = Post::select('slug')->where('id', $previous)->get()->value('slug');
 
         return ("/post/$slug");
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+
+        return response()->json(['slug' => $slug]);
     }
 }
