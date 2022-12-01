@@ -20,6 +20,15 @@
                             <br>
                         </h1>
 
+                        <div class="d-flex mb-3"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
+                                height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                            <div>
+                                <p class="fw-bold mb-0">{{ $post->author->name }}</p>
+                                <p class="text-muted mb-0 article"><a href="{{ route('categories') }}">Category</a>:
+                                    {{ $post->category->name }}</p>
+                            </div>
+                        </div>
+
                         <img src="https://picsum.photos/1000/600" class="img-fluid">
 
                         <article class="my-2 fs-5">

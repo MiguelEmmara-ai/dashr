@@ -9,7 +9,7 @@
                             <p class="mb-4">Dashr is CMS for blogging made with laravel php frameworks</p>
                             <div class="my-3">
                                 <a class="btn btn-primary btn-lg me-2" role="button"
-                                    href="https://github.com/MiguelEmmara-ai/dashr">GitHub Repo</a>
+                                    href="https://github.com/MiguelEmmara-ai/dashr" target="_blank">GitHub Repo</a>
                             </div>
                         </div>
                     </div>
