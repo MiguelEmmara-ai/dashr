@@ -38,7 +38,7 @@ Route::get('/random-post', [PostController::class, 'randomArticle']);
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
-    Route::get('/dashboard/posts', [DashboardController::class, 'showAllPosts'])
+    Route::get('/dashboard/all-posts', [DashboardController::class, 'showAllPosts'])
         ->name('dashboard-posts');
     Route::get('/logout', [DashboardController::class, 'logout']);
 });
@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('/dashboard/posts', PostController::class);
 });
 
 require __DIR__ . '/auth.php';
