@@ -9,8 +9,10 @@
                         <div class="col-md-12">
                             <div class="d-xl-flex align-items-xl-center">
                                 <a href="/post/{{ $post->slug }}">
-                                    <img class="img-fluid" src="https://picsum.photos/260/180" class="img-fluid"
-                                        loading="lazy">
+                                    <img class="img-fluid"
+                                        src=" https://source.unsplash.com/260x180?{{ $post->category->name }}"
+                                        class="img-fluid" loading="lazy">
+
                                 </a>
                                 <div style="padding-left: 10px;">
                                     <div class="article">
@@ -25,12 +27,13 @@
                                     </p>
                                     <div class="d-flex">
                                         <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                            height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                                            src="{{ asset('/storage/avatar-1.jpg') }}">
                                         <div>
                                             <p class="fw-bold mb-0">{{ $post->author->name }}</p>
                                             <p class="text-muted mb-0 article">
                                                 <a href="{{ route('categories') }}">Category</a>:
-                                                <a href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
+                                                <a
+                                                    href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                                             </p>
                                         </div>
                                     </div>

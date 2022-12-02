@@ -20,7 +20,7 @@
                         <!-- Account -->
                         <div class="card-body">
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                <img src="{{ asset('/storage/avatar-1.jpg') }}"
                                     alt="user-avatar" class="d-block rounded" height="100" width="100"
                                     id="uploadedAvatar" />
                                 <div class="button-wrapper">

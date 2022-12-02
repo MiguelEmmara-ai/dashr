@@ -56,13 +56,10 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group row">
-                                    <label for="avatar"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Avatar (optional)') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input type="file" class="form-control" name="avatar" id="avatar" />
-                                    </div>
+                                <div class="mb-3">
+                                    {{-- <label for="avatar" class="form-control">{{ __('Avatar (optional)') }}</label> --}}
+                                    <p class="justify-content-start">Avatar (optional)</p>
+                                    <input type="file" class="form-control" name="avatar" id="avatar" />
                                 </div>
                                 <div class="mb-3">
                                     <input class="form-control @error('password') is-invalid @enderror" type="password"
