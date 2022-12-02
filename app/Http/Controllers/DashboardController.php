@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +29,11 @@ class DashboardController extends Controller
     {
         return view('pages.admin.dashboard', [
             "title" => "Admin Dashboard",
+            "totalPost" => count(Post::get('id')),
+            "categoryLists" => count(Category::get('id')),
+            "yourPost" => count(Post::where('user_id', '=', Auth::id())->get()),
+            "totalAuthors" => count(User::get('id')),
+            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(10)->withQueryString(),
             "user" => Auth::user()
         ]);
     }

@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
         ]);
 
-        User::factory(3)->create();
+        User::factory(9)->create();
 
         Category::create([
             'name' => 'Web Programming',
@@ -51,6 +51,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'personal'
         ]);
 
-        Post::factory(50)->create();
+        Post::factory(100)->create();
     }
 }

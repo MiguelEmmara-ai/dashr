@@ -6,7 +6,7 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
-                <div class="col-lg-8 mb-4 order-0">
+                <div class="col-lg-12 mb-4 order-0">
                     <div class="card">
                         <div class="d-flex align-items-end row">
                             <div class="col-sm-7">
@@ -33,8 +33,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 order-1">
+                <!--/ Total Revenue -->
+                <div class="col-md-12 col-lg-12 order-2 mb-4">
                     <div class="row">
+                        <div class="col-lg-6 col-md-12 col-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                        <div class="avatar flex-shrink-0">
+                                            <img src="{{ asset('/admin/assets/img/icons/unicons/cc-success.png') }}"
+                                                alt="Credit Card" class="rounded" />
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn p-0" type="button" id="cardOpt4" data-bs-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
+                                                <a class="dropdown-item" href="javascript:void(0);">View
+                                                    More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="d-block mb-1">Your Posts</span>
+                                    <h3 class="card-title text-nowrap mb-2">{{ $yourPost }}</h3>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-lg-6 col-md-12 col-6 mb-4">
                             <div class="card">
                                 <div class="card-body">
@@ -51,12 +76,11 @@
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                                                 <a class="dropdown-item" href="javascript:void(0);">View
                                                     More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="fw-semibold d-block mb-1">Posts</span>
-                                    <h3 class="card-title mb-2">$12,628</h3>
+                                    <span class="fw-semibold d-block mb-1">Total Posts</span>
+                                    <h3 class="card-title mb-2">{{ $totalPost }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -76,71 +100,35 @@
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
                                                 <a class="dropdown-item" href="javascript:void(0);">View
                                                     More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <span>Category</span>
-                                    <h3 class="card-title text-nowrap mb-1">$4,679</h3>
+                                    <span>Category Lists</span>
+                                    <h3 class="card-title text-nowrap mb-1">{{ $categoryLists }}</h3>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!--/ Total Revenue -->
-                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
-                    <div class="row">
-                        <div class="col-6 mb-4">
+                        <div class="col-lg-6 col-md-12 col-6 mb-4">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <div class="avatar flex-shrink-0">
-                                            <img src="{{ asset('/admin/assets/img/icons/unicons/paypal.png') }}"
+                                            <img src="{{ asset('/admin/assets/img/icons/unicons/wallet-info.png') }}"
                                                 alt="Credit Card" class="rounded" />
                                         </div>
                                         <div class="dropdown">
-                                            <button class="btn p-0" type="button" id="cardOpt4"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
-                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
                                                 <a class="dropdown-item" href="javascript:void(0);">View
                                                     More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="d-block mb-1">Your Posts</span>
-                                    <h3 class="card-title text-nowrap mb-2">$2,456</h3>
-                                    <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i>
-                                        -14.82%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="avatar flex-shrink-0">
-                                            <img src="{{ asset('../admin/assets/img/icons/unicons/cc-primary.png') }}"
-                                                alt="Credit Card" class="rounded" />
-                                        </div>
-                                        <div class="dropdown">
-                                            <button class="btn p-0" type="button" id="cardOpt1"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                                <a class="dropdown-item" href="javascript:void(0);">View
-                                                    More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="fw-semibold d-block mb-1">Transactions</span>
-                                    <h3 class="card-title mb-2">$14,857</h3>
-                                    <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
-                                        +28.14%</small>
+                                    <span>Total Authors</span>
+                                    <h3 class="card-title text-nowrap mb-1">{{ $totalAuthors }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -149,120 +137,58 @@
             </div>
             <div class="row">
                 <!-- Transactions -->
-                <div class="col-md-6 col-lg-4 order-2 mb-4">
+                <div class="col-md-12 col-lg-12 order-2 mb-4">
                     <div class="card h-100">
                         <div class="card-header d-flex align-items-center justify-content-between">
-                            <h5 class="card-title m-0 me-2">Transactions</h5>
+                            <h5 class="card-title m-0 me-2">Recent Post</h5>
                             <div class="dropdown">
                                 <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
-                                    <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">View More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
                             <ul class="p-0 m-0">
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{ asset('/admin/assets/img/icons/unicons/paypal.png') }}"
-                                            alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Paypal</small>
-                                            <h6 class="mb-0">Send money</h6>
+                                @forelse ($posts as $post)
+                                    <li class="d-flex mb-4 pb-1">
+                                        <div class="avatar flex-shrink-0 me-3">
+                                            <img src="{{ asset('/admin/assets/img/icons/unicons/wallet-info.png') }}"
+                                                alt="User" class="rounded" />
                                         </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">+82.6</h6>
-                                            <span class="text-muted">USD</span>
+                                        <div
+                                            class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                            <div class="me-2">
+                                                <small class="text-muted d-block mb-1">{{ $post->category->name }}</small>
+                                                <h6 class="mb-0">{{ $post->title }}</h6>
+                                            </div>
+                                            <div class="user-progress d-flex align-items-center gap-1">
+                                                <span class="text-muted">Atuhor: </span>
+                                                <h6 class="mb-0">{{ $post->author->name }}</h6>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{ asset('/admin/assets/img/icons/unicons/wallet.png') }}"
-                                            alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Wallet</small>
-                                            <h6 class="mb-0">Mac'D</h6>
+                                    </li>
+                                @empty
+                                    <li class="d-flex mb-4 pb-1">
+                                        <div class="avatar flex-shrink-0 me-3">
+                                            <img src="{{ asset('/admin/assets/img/icons/unicons/wallet-info.png') }}"
+                                                alt="User" class="rounded" />
                                         </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">+270.69</h6>
-                                            <span class="text-muted">USD</span>
+                                        <div
+                                            class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                            <div class="me-2">
+                                                <small class="text-muted d-block mb-1">No Category</small>
+                                                <h6 class="mb-0">No Post</h6>
+                                            </div>
+                                            <div class="user-progress d-flex align-items-center gap-1">
+                                                <strong>No Author</strong>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{ asset('/admin/assets/img/icons/unicons/chart.png') }}" alt="User"
-                                            class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Transfer</small>
-                                            <h6 class="mb-0">Refund</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">+637.91</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{ asset('/admin/assets/img/icons/unicons/cc-success.png') }}"
-                                            alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Credit Card</small>
-                                            <h6 class="mb-0">Ordered Food</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">-838.71</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{ asset('/admin/assets/img/icons/unicons/wallet.png') }}"
-                                            alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Wallet</small>
-                                            <h6 class="mb-0">Starbucks</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">+203.33</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{ asset('/admin/assets/img/icons/unicons/cc-warning.png') }}"
-                                            alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Mastercard</small>
-                                            <h6 class="mb-0">Ordered Food</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">-92.45</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                @endforelse
                             </ul>
                         </div>
                     </div>
@@ -276,7 +202,7 @@
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
-                    © <?php echo date("Y"); ?> , made with ❤️ by
+                    © <?php echo date('Y'); ?> , made with ❤️ by
                     <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                 </div>
             </div>
