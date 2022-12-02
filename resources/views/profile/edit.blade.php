@@ -41,7 +41,7 @@
                         </div>
                         <hr class="my-0" />
                         <div class="card-body">
-                            <form method="post" action="{{ route('profile.update') }}">
+                            <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('patch')
 

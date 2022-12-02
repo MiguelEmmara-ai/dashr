@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 order-first order-md-last" style="min-height: 250px;">
-                        <img class="w-100 h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                        <img class="w-100 h-100 fit-cover" src="{{ asset('screenshots/screencapture-dashr-dashboard-2022-12-02-16_21_51.png') }}">
                     </div>
                 </div>
             </div>
