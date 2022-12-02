@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class HomeController extends Controller
     {
         return view('pages.home', [
             'title' => 'Dashr | Home Page',
-            'posts' => Post::latest()->paginate(8),
+            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(8)->withQueryString()
         ]);
     }
 }
