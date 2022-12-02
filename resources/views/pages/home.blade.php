@@ -27,8 +27,7 @@
                                     </p>
                                     <div class="d-flex">
                                         <a href="/?author={{ $post->author->username }}"><img
-                                                class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                                height="50" src="{{ asset('/storage/avatar-1.jpg') }}"></a>
+                                                class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40" src="{{ asset('/storage/avatar-1.jpg') }}"></a>
                                         <div>
                                             <p class="fw-bold mb-0 article">
                                                 <a
