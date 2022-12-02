@@ -16,7 +16,7 @@
                                         Lets's Create A Good Article!
                                     </p>
 
-                                    <a href="{{ route('dashboard-posts') }}" class="btn btn-sm btn-outline-primary">View
+                                    <a href="{{ route('posts.index') }}" class="btn btn-sm btn-outline-primary">View
                                         Posts</a>
                                     <a href="{{ route('posts.create') }}" class="btn btn-sm btn-outline-primary">Create
                                         Post</a>
@@ -147,7 +147,7 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
-                                    <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                    <a class="dropdown-item" href="{{ route('posts.index') }}">View More</a>
                                 </div>
                             </div>
                         </div>

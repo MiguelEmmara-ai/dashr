@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
         ->name('dashboard-posts');
     Route::get('/dashboard/all-posts/checkSlug', [PostController::class, 'checkSlug'])
         ->name('checkSlug');
-    Route::resource('/dashboard/posts', PostController::class);
+    Route::resource('posts', PostController::class);
 });
 
 require __DIR__ . '/auth.php';
