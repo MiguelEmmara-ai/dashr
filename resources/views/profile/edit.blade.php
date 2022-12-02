@@ -12,7 +12,8 @@
                 <div class="col-md-12">
                     <ul class="nav nav-pills flex-column flex-md-row mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Account</a>
+                            <a class="nav-link active" href="{{ route('profile.edit') }}"><i class="bx bx-user me-1"></i>
+                                Account</a>
                         </li>
                     </ul>
                     <div class="card mb-4">
@@ -20,9 +21,8 @@
                         <!-- Account -->
                         <div class="card-body">
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                <img src="{{ asset('/storage/avatar-1.jpg') }}"
-                                    alt="user-avatar" class="d-block rounded" height="100" width="100"
-                                    id="uploadedAvatar" />
+                                <img src="{{ asset('/storage/avatar-1.jpg') }}" alt="user-avatar" class="d-block rounded"
+                                    height="100" width="100" id="uploadedAvatar" />
                                 <div class="button-wrapper">
                                     <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                                         <span class="d-none d-sm-block">Upload new photo</span>
@@ -72,7 +72,8 @@
                                     </div>
                                 </div>
                                 <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                    <button type="submit" class="btn btn-primary me-2 mb-2">Save changes</button>
+
                                 </div>
                             </form>
                         </div>
@@ -89,38 +90,31 @@
                                 @method('put')
 
                                 <div class="row">
+
                                     <div class="mb-3 col-md-8">
                                         <label for="current_password" class="form-label">Current Password</label>
-                                        <input type="password" class="form-control" id="current_password"
-                                            name="current_password" />
-                                        @error('current_password')
-                                            <div class="text-danger">
-                                                {{ $messages = "$errors->updatePassword->get('current_password')" }}</div>
-                                        @enderror
+                                        <input type="password"
+                                            class="form-control @error('current_password') is-invalid @enderror"
+                                            id="current_password" name="current_password" />
+                                        <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
                                     </div>
 
                                     <div class="mb-3 col-md-8">
-                                        <label for="new-password" class="form-label">New Password</label>
-                                        <input type="password" class="form-control" id="new-password" name="new-password" />
-                                        @error('new-password')
-                                            <div class="text-danger">
-                                                {{ $messages = "$errors->updatePassword->get('password')" }}</div>
-                                        @enderror
+                                        <label for="password" class="form-label">New Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" />
+                                        <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
                                     </div>
 
                                     <div class="mb-3 col-md-8">
-                                        <label for="confirm-password" class="form-label">Confirm Password</label>
-                                        <input type="password" class="form-control" id="confirm-password"
-                                            name="confirm-password" />
-                                        @error('confirm-password')
-                                            <div class="text-danger">
-                                                {{ $messages = "$errors->updatePassword->get('password_confirmation')" }}</div>
-                                        @enderror
+                                        <label for="password_confirmation" class="form-label">Confirm Password</label>
+                                        <input type="password" class="form-control" id="password_confirmation"
+                                            name="password_confirmation" />
+                                        <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
                                     </div>
 
                                 </div>
                                 <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                    <button type="submit" class="btn btn-primary me-2 mb-2">Save changes</button>
                                 </div>
                             </form>
                         </div>
