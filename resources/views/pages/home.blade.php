@@ -26,14 +26,18 @@
                                         <br>
                                     </p>
                                     <div class="d-flex">
-                                        <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                            src="{{ asset('/storage/avatar-1.jpg') }}">
+                                        <a href="/?author={{ $post->author->username }}"><img
+                                                class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
+                                                height="50" src="{{ asset('/storage/avatar-1.jpg') }}"></a>
                                         <div>
-                                            <p class="fw-bold mb-0">{{ $post->author->name }}</p>
+                                            <p class="fw-bold mb-0 article">
+                                                <a
+                                                    href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
+                                            </p>
                                             <p class="text-muted mb-0 article">
                                                 <a href="{{ route('categories') }}">Category</a>:
-                                                <a
-                                                    href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
+                                                <a href="/?category={{ $post->category->slug }}">{{ $post->category->name }}
+                                                </a>
                                             </p>
                                         </div>
                                     </div>
