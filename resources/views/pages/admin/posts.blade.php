@@ -25,7 +25,15 @@
                                 <tr>
                                     <td>{{ $post->id }}</td>
                                     <td><strong>{{ $post->title }}</strong></td>
-                                    <td><img class="img-fluid" src="https://picsum.photos/120/100"></td>
+                                    <td>
+                                        @if ($post->image)
+                                            <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid"
+                                                loading="lazy">
+                                        @else
+                                            <img src="https://source.unsplash.com/1100x600?Web%20Programming"
+                                                class="img-fluid" loading="lazy">
+                                        @endif
+                                    </td>
 
                                     <td>
                                         <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">

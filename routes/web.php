@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    Route::get('/dashboard/all-posts/checkSlug', [PostController::class, 'checkSlug'])
+    Route::get('posts/checkSlug', [PostController::class, 'checkSlug'])
         ->name('checkSlug');
     Route::resource('posts', PostController::class);
 });

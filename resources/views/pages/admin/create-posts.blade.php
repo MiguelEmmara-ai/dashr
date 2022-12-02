@@ -46,6 +46,17 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label for="image" class="form-label">Thumbnail</label>
+                                <input class="form-control @error('image') is-invalid @enderror" type="file"
+                                    id="image" name="image">
+                                @error('image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label for="body" class="form-label">Body</label>
                                 <input id="body" type="hidden" name="body" required value="{{ old('body') }}">
                                 <trix-editor input="body"></trix-editor>
@@ -94,9 +105,13 @@
         const slug = document.querySelector('#slug');
 
         title.addEventListener('change', function() {
-            fetch('/dashboard/all-posts/checkSlug?title=' + title.value)
+            fetch('/posts/checkSlug?title=' + title.value)
                 .then(response => response.json())
                 .then(data => slug.value = data.slug);
         });
+
+        document.addEventListener("trix-file-accept", event => {
+            event.preventDefault()
+        })
     </script>
 @endsection

@@ -34,7 +34,13 @@
                             </div>
                         </div>
 
-                        <img src="https://source.unsplash.com/1100x600?Web%20Programming" class="img-fluid">
+                        @if ($post->image)
+                            <img width="850" height="700" src="{{ asset('storage/' . $post->image) }}"
+                                class="img-fluid" loading="lazy">
+                        @else
+                            <img width="850" height="700" src="https://source.unsplash.com/1100x600?Web%20Programming"
+                                class="img-fluid" loading="lazy">
+                        @endif
 
                         <article class="my-2 fs-5">
                             {!! $post->body !!}

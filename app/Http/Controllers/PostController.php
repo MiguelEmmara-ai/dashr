@@ -55,6 +55,10 @@ class PostController extends Controller
         $data['user_id'] = auth()->user()->id;
         $data['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
+        if ($request->file('image')) {
+            $data['image'] = $request->file('image')->store('post-images');
+        }
+
         Post::create($data);
 
         return Redirect::route('posts.index')->with('success', "Success Create Post [$request->title]");
