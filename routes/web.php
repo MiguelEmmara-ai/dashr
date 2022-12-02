@@ -49,9 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/dashboard/all-posts', [PostController::class, 'showAllPosts'])
-        ->name('dashboard-posts');
+    
     Route::get('/dashboard/all-posts/checkSlug', [PostController::class, 'checkSlug'])
         ->name('checkSlug');
     Route::resource('posts', PostController::class);

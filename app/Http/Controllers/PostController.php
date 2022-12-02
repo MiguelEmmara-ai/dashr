@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
@@ -20,25 +21,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $title = '';
-
-        // if (request('category')) {
-        //     $category = Category::firstWhere('slug', request('category'));
-        //     $title = ' In ' . $category->name;
-        // }
-
-        // if (request('author')) {
-        //     $author = User::firstWhere('username', request('author'));
-        //     $title = ' By ' . $author->name;
-        // }
-
-
-        // return view('posts', [
-        //     "title" => "All Post " . $title,
-        //     "active" => "posts",
-        //     "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
-        // ]);
-
         return view('pages.admin.posts', [
             "title" => "Admin Dashboard",
             "posts" => Post::latest()->paginate(7)->withQueryString(),
@@ -75,7 +57,7 @@ class PostController extends Controller
 
         Post::create($data);
 
-        return redirect()->route('dashboard-posts')->with('success', "Success Create Post [$request->title]");
+        return Redirect::route('posts.index')->with('success', "Success Create Post [$request->title]");
     }
 
     /**
@@ -89,15 +71,6 @@ class PostController extends Controller
         return view('pages.post', [
             "title" => "Post",
             "post" => $post
-        ]);
-    }
-
-    public function showAllPosts()
-    {
-        return view('pages.admin.posts', [
-            "title" => "Admin Dashboard",
-            "posts" => Post::latest()->paginate(7)->withQueryString(),
-            "user" => Auth::user()
         ]);
     }
 
@@ -141,7 +114,7 @@ class PostController extends Controller
 
         $post->update($data);
 
-        return redirect()->route('dashboard-posts')->with('success', "Success Update Post [$request->title]");
+        return Redirect::route('posts.index')->with('success', "Success Update Post [$request->title]");
     }
 
     /**
@@ -155,7 +128,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->delete();
 
-        return redirect()->route('dashboard-posts')->with('success', 'Success Delete Post');
+        return Redirect::route('posts.index')->with('success', 'Success Delete Post');
     }
 
     public function randomArticle(Post $post)
@@ -198,7 +171,7 @@ class PostController extends Controller
         if ($post->id == "1") {
             return ("/");
         }
-        
+
         return ("/post/$slug");
     }
 
