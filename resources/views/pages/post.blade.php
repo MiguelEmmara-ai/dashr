@@ -24,8 +24,10 @@
                                 height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                             <div>
                                 <p class="fw-bold mb-0">{{ $post->author->name }}</p>
-                                <p class="text-muted mb-0 article"><a href="{{ route('categories') }}">Category</a>:
-                                    {{ $post->category->name }}</p>
+                                <p class="text-muted mb-0 article">
+                                    <a href="{{ route('categories') }}">Category</a>:
+                                    <a href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
+                                </p>
                             </div>
                         </div>
 

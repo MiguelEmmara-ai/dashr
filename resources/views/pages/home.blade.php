@@ -30,7 +30,7 @@
                                             <p class="fw-bold mb-0">{{ $post->author->name }}</p>
                                             <p class="text-muted mb-0 article">
                                                 <a href="{{ route('categories') }}">Category</a>:
-                                                {{ $post->category->name }}
+                                                <a href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                                             </p>
                                         </div>
                                     </div>
