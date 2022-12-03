@@ -86,7 +86,7 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Posts</span></li>
 
         <!-- Posts -->
-        <li class="menu-item {{ request()->is('posts') ? 'active' : '' }}">
+        <li class="menu-item {{ request()->is('posts') ? 'active' : '' }} {{ request()->is('posts/*/*') ? 'active' : '' }}">
             <a href="{{ route('posts.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Posts</div>
