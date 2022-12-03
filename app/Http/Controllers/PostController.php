@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class PostController extends Controller
 {
@@ -23,7 +24,7 @@ class PostController extends Controller
     {
         return view('pages.admin.posts', [
             "title" => "Admin Dashboard",
-            "posts" => Post::latest()->paginate(10)->withQueryString(),
+            "posts" => Post::latest()->paginate(10)->withQueryString()->sortbydesc('id'),
             "user" => Auth::user()
         ]);
     }
@@ -116,6 +117,13 @@ class PostController extends Controller
         $data['user_id'] = auth()->user()->id;
         $data['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
+        if ($request->file('image')) {
+            if ($post->image) {
+                FacadesStorage::delete($post->image);
+            }
+            $data['image'] = $request->file('image')->store('post-images');
+        }
+
         $post->update($data);
 
         return Redirect::route('posts.index')->with('success', "Success Update Post [$request->title]");
@@ -130,9 +138,21 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+
+        if ($post->image) {
+            FacadesStorage::delete($post->image);
+        }
+
         $post->delete();
 
         return Redirect::route('posts.index')->with('success', 'Success Delete Post');
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+
+        return response()->json(['slug' => $slug]);
     }
 
     public function randomArticle(Post $post)
@@ -177,12 +197,5 @@ class PostController extends Controller
         }
 
         return ("/$slug");
-    }
-
-    public function checkSlug(Request $request)
-    {
-        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
-
-        return response()->json(['slug' => $slug]);
     }
 }
