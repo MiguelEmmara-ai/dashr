@@ -36,7 +36,6 @@ Route::get('/contact', function () {
 Route::get('/categories', [CategoryController::class, 'index'])
     ->name('categories');
 
-Route::get('/{post:slug}', [PostController::class, 'show']);
 Route::get('/random-post', [PostController::class, 'randomArticle']);
 
 Route::controller(DashboardController::class)->group(function () {
@@ -56,3 +55,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/{post:slug}', [PostController::class, 'show']);
