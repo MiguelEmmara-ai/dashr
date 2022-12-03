@@ -166,17 +166,18 @@ class PostController extends Controller
 
     public static function nextPost($id)
     {
-        // get the current user
-        $post = Post::find($id);
+        // get the current post id
+        $post_id = Post::find($id);
 
-        // get next post id
-        $next = Post::where('id', '>', $post->id)->min('id');
-        $slug = Post::select('slug')->where('id', $next)->get()->value('slug');
+        // get the next post id
+        $next_id = Post::where('id', '>', $post_id->id)->min('id');
 
-        // get max post id
-        $max = Post::where('id', $post->id)->max('id');
+        $slug = Post::select('slug')->where('id', $next_id)->get()->value('slug');
 
-        if ($post->id == $max) {
+        // get the max post id
+        $max_id = Post::where('id', $post_id->id)->max('id') + 1;
+
+        if ($post_id->id == $max_id) {
             return ("/");
         }
 
@@ -185,14 +186,14 @@ class PostController extends Controller
 
     public static function prevPost($id)
     {
-        // get the current user
-        $post = Post::find($id);
+        // get the current post id
+        $post_id = Post::find($id);
 
-        // get previous user id
-        $previous = Post::where('id', '<', $post->id)->max('id');
-        $slug = Post::select('slug')->where('id', $previous)->get()->value('slug');
+        // get the previous post id
+        $previous_id = Post::where('id', '<', $post_id->id)->max('id');
+        $slug = Post::select('slug')->where('id', $previous_id)->get()->value('slug');
 
-        if ($post->id == "1") {
+        if ($post_id->id == "1") {
             return ("/");
         }
 
