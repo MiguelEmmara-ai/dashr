@@ -23,7 +23,7 @@ class PostController extends Controller
     {
         return view('pages.admin.posts', [
             "title" => "Admin Dashboard",
-            "posts" => Post::latest()->paginate(7)->withQueryString(),
+            "posts" => Post::latest()->paginate(10)->withQueryString(),
             "user" => Auth::user()
         ]);
     }
