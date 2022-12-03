@@ -8,7 +8,7 @@
                     <div class="row mb-2" style="padding-bottom: 10px;border-width: 2px;padding-top: 10px;">
                         <div class="col-md-12">
                             <div class="d-xl-flex align-items-xl-center">
-                                <a href="/post/{{ $post->slug }}">
+                                <a href="{{ $post->slug }}">
                                     @if ($post->image)
                                         <img width="259" height="181" src="{{ asset('storage/' . $post->image) }}"
                                             class="img-fluid" loading="lazy">
@@ -21,7 +21,7 @@
                                 </a>
                                 <div style="padding-left: 10px;">
                                     <div class="article">
-                                        <a href="/post/{{ $post->slug }}">
+                                        <a href="{{ $post->slug }}">
                                             <h3 class="d-xl-flex">{{ $post->title }}
                                                 <br>
                                             </h3>

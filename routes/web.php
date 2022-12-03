@@ -36,7 +36,7 @@ Route::get('/contact', function () {
 Route::get('/categories', [CategoryController::class, 'index'])
     ->name('categories');
 
-Route::get('/post/{post:slug}', [PostController::class, 'show']);
+Route::get('/{post:slug}', [PostController::class, 'show']);
 Route::get('/random-post', [PostController::class, 'randomArticle']);
 
 Route::controller(DashboardController::class)->group(function () {
@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     Route::get('posts/checkSlug', [PostController::class, 'checkSlug'])
         ->name('checkSlug');
     Route::resource('posts', PostController::class);

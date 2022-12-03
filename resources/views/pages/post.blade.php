@@ -9,7 +9,9 @@
                         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="d-none d-sm-block">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Home</span></a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Posts</span></a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="/?category={{ $post->category->slug }}"><span>{{ $post->category->name }}</span></a>
+                                </li>
                                 <li class="breadcrumb-item"><a
                                         href="{{ $post->slug }}"><span>{{ $post->title }}</span></a>
                                 </li>

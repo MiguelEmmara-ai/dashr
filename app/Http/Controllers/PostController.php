@@ -141,7 +141,7 @@ class PostController extends Controller
         $random_id = $post->random()->id;
         $slug = Post::select('slug')->where('id', $random_id)->get()->value('slug');
 
-        return redirect("/post/$slug");
+        return redirect("/$slug");
     }
 
     public static function nextPost($id)
@@ -160,7 +160,7 @@ class PostController extends Controller
             return ("/");
         }
 
-        return ("/post/$slug");
+        return ("/$slug");
     }
 
     public static function prevPost($id)
@@ -176,7 +176,7 @@ class PostController extends Controller
             return ("/");
         }
 
-        return ("/post/$slug");
+        return ("/$slug");
     }
 
     public function checkSlug(Request $request)
