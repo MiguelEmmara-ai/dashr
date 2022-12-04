@@ -32,11 +32,12 @@ class DatabaseSeeder extends Seeder
             'username' => 'miguelemmara',
             'email' => 'miguelemmara123@gmail.com',
             'avatar' => 'storage/avatar-1.jpg',
+            'haveAvatar' => false,
             'email_verified_at' => now(),
             'password' => Hash::make('admin123'),
         ]);
 
-        User::factory(9)->create();
+        User::factory(5)->create();
 
         Category::create([
             'name' => 'Web Programming',

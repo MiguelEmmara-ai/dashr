@@ -31,9 +31,16 @@
                                         <br>
                                     </p>
                                     <div class="d-flex">
-                                        <a href="/?author={{ $post->author->username }}"><img
-                                                class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
-                                                src="{{ asset('/storage/avatar-1.jpg') }}"></a>
+                                        @if ($post->author->haveAvatar == true)
+                                            <a href="/?author={{ $post->author->username }}"><img
+                                                    class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
+                                                    src="{{ asset('storage/avatars/avatar-' . $post->author->id . '.jpg') }}"></a>
+                                        @else
+                                            <a href="/?author={{ $post->author->username }}"><img
+                                                    class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
+                                                    src="{{ asset('storage/avatar-' . $post->author->id . '.jpg') }}"></a>
+                                        @endif
+
                                         <div>
                                             <p class="fw-bold mb-0 article">
                                                 <a
