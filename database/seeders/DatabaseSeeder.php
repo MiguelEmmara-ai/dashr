@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Laravolt\Avatar\Facade as Avatar;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,13 +32,15 @@ class DatabaseSeeder extends Seeder
             'name' => 'Miguel Emmara',
             'username' => 'miguelemmara',
             'email' => 'miguelemmara123@gmail.com',
-            'avatar' => 'storage/avatar-1.jpg',
             'haveAvatar' => false,
+            'default_avatar' => 'storage/default_avatar-1.jpg',
             'email_verified_at' => now(),
             'password' => Hash::make('admin123'),
         ]);
 
-        User::factory(5)->create();
+        Avatar::create('Miguel Emmara')->save(storage_path('app/public/default_avatar-1.jpg'), 100);
+
+        User::factory(9)->create();
 
         Category::create([
             'name' => 'Web Programming',
@@ -54,6 +57,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'personal'
         ]);
 
-        Post::factory(10)->create();
+        Post::factory(30)->create();
     }
 }

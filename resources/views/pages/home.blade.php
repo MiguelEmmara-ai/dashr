@@ -14,8 +14,8 @@
                                             class="img-fluid" loading="lazy">
                                     @else
                                         <img width="259" height="181"
-                                            src="https://source.unsplash.com/1100x600?Web%20Programming" class="img-fluid"
-                                            loading="lazy">
+                                            src="https://source.unsplash.com/1100x600?{{ $post->category->name }}"
+                                            class="img-fluid" loading="lazy">
                                     @endif
 
                                 </a>
@@ -34,11 +34,11 @@
                                         @if ($post->author->haveAvatar == true)
                                             <a href="/?author={{ $post->author->username }}"><img
                                                     class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
-                                                    src="{{ asset('storage/avatars/avatar-' . $post->author->id . '.jpg') }}"></a>
+                                                    src="{{ asset($post->author->avatar) }}"></a>
                                         @else
                                             <a href="/?author={{ $post->author->username }}"><img
                                                     class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
-                                                    src="{{ asset('storage/avatar-' . $post->author->id . '.jpg') }}"></a>
+                                                    src="{{ asset($post->author->default_avatar) }}"></a>
                                         @endif
 
                                         <div>

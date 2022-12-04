@@ -18,16 +18,19 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        static $id = 1;
+        // Generate default avatar for dummy users
+        static $id = 2;
 
-        Avatar::create(fake()->name())->save(storage_path('app/public/avatar-' . $id++ . '.jpg'), 100);
+        $fake_name = fake()->name();
+
+        Avatar::create($fake_name)->save(storage_path('app/public/default_avatar-' . $id . '.jpg'), 100);
 
         return [
-            'name' => fake()->name(),
+            'name' => $fake_name,
             'username' => fake()->userName(),
             'email' => fake()->unique()->safeEmail(),
-            'avatar' => 'storage/avatar-' . $id . '.jpg',
             'haveAvatar' => false,
+            'default_avatar' => 'storage/default_avatar-' . $id++ . '.jpg',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

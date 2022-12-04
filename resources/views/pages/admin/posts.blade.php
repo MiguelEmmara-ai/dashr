@@ -39,8 +39,17 @@
                                         <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
                                                 class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                                <img src="{{ asset('/storage/avatar-1.jpg') }}" alt="Avatar"
-                                                    class="rounded-circle" />
+                                                @if ($post->author->haveAvatar == true)
+                                                    <a href="/?author={{ $post->author->username }}"><img
+                                                            class="rounded-circle flex-shrink-0 me-3 fit-cover"
+                                                            width="40" src="{{ asset($post->author->avatar) }}"></a>
+                                                @else
+                                                    <a href="/?author={{ $post->author->username }}"><img
+                                                            class="rounded-circle flex-shrink-0 me-3 fit-cover"
+                                                            width="40"
+                                                            src="{{ asset($post->author->default_avatar) }}"></a>
+                                                @endif
+
                                             </li>
                                             <strong>{{ $post->author->name }}</strong>
                                         </ul>

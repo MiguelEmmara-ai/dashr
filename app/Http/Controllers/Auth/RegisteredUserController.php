@@ -58,17 +58,25 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Create default avatar
+        Avatar::create($request->name)->save(storage_path('app/public/default_avatar-' . $user->id . '.jpg'), 100);
+
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update([
+                'default_avatar' => 'storage/default_avatar-' . $user->id . '.jpg'
+            ]);
+
+        // Replace if avtar was present during registration
         if ($request->file('avatar')) {
             $request->file('avatar')->storeAs('avatars', 'avatar-' . $user->id . '.jpg');
 
             DB::table('users')
                 ->where('id', $user->id)
                 ->update([
-                    'avatar' => 'avatar/avatar-' . $user->id . '.jpg',
+                    'avatar' => 'avatars/avatar-' . $user->id . '.jpg',
                     'haveAvatar' => true
                 ]);
-        } else {
-            Avatar::create($request->name)->save(storage_path('app/public/avatar-' . $user->id . '.jpg'), 100);
         }
 
         event(new Registered($user));

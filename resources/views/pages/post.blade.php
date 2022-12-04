@@ -22,9 +22,17 @@
                             <br>
                         </h1>
 
-                        <div class="d-flex mb-3"><a href="/?author={{ $post->author->username }}"><img
-                                    class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
-                                    src="{{ asset('/storage/avatar-1.jpg') }}"></a>
+                        <div class="d-flex mb-3">
+                            @if ($post->author->haveAvatar == true)
+                                <a href="/?author={{ $post->author->username }}"><img
+                                        class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
+                                        src="{{ asset($post->author->avatar) }}"></a>
+                            @else
+                                <a href="/?author={{ $post->author->username }}"><img
+                                        class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
+                                        src="{{ asset($post->author->default_avatar) }}"></a>
+                            @endif
+
                             <div>
                                 <p class="fw-bold mb-0 article">
                                     <a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
@@ -40,8 +48,9 @@
                             <img width="850" height="700" src="{{ asset('storage/' . $post->image) }}"
                                 class="img-fluid" loading="lazy">
                         @else
-                            <img width="850" height="700" src="https://source.unsplash.com/1100x600?Web%20Programming"
-                                class="img-fluid" loading="lazy">
+                            <img width="850" height="700"
+                                src="https://source.unsplash.com/1100x600?{{ $post->category->name }}" class="img-fluid"
+                                loading="lazy">
                         @endif
 
                         <article class="my-2 fs-5">

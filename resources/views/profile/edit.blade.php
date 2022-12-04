@@ -21,8 +21,14 @@
                         <!-- Account -->
                         <div class="card-body">
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                <img src="{{ asset('/storage/avatar-1.jpg') }}" alt="user-avatar" class="d-block rounded"
-                                    height="100" width="100" id="uploadedAvatar" />
+                                @if ($user->haveAvatar == true)
+                                    <img class="d-block rounded" alt="user-avatar" height="100" width="100"
+                                        id="uploadedAvatar" src="{{ asset($user->avatar) }}">
+                                @else
+                                    <img class="d-block rounded" alt="user-avatar" height="100" width="100"
+                                        id="uploadedAvatar" src="{{ asset($user->default_avatar) }}">
+                                @endif
+
                                 <div class="button-wrapper">
                                     <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                                         <span class="d-none d-sm-block">Upload new photo</span>
