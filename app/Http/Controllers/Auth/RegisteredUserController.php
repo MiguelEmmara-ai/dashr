@@ -67,15 +67,15 @@ class RegisteredUserController extends Controller
                 'default_avatar' => 'storage/default_avatar-' . $user->id . '.jpg'
             ]);
 
-        // Replace if avtar was present during registration
+        // Replace if avatar was present during registration
         if ($request->file('avatar')) {
             $request->file('avatar')->storeAs('avatars', 'avatar-' . $user->id . '.jpg');
 
             DB::table('users')
                 ->where('id', $user->id)
                 ->update([
-                    'avatar' => 'avatars/avatar-' . $user->id . '.jpg',
-                    'haveAvatar' => true
+                    'haveAvatar' => true,
+                    'avatar' => 'avatars/avatar-' . $user->id . '.jpg'
                 ]);
         }
 

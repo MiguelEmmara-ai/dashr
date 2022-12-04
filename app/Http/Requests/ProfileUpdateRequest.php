@@ -18,7 +18,20 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'name' => ['string', 'max:255'],
             'username' => ['string', 'min:5', 'max:20', Rule::unique(User::class)->ignore($this->user()->id)],
+            'avatar' => ['image', 'file', 'dimensions:width=200,height=200'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'avatar.dimensions' => 'Please Make Sure The Image Dimension Is 200 x 200.',
         ];
     }
 }

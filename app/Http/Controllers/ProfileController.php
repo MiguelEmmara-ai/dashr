@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class ProfileController extends Controller
 {
@@ -37,7 +39,21 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-        $request->user()->save();
+        if ($request->file('avatar')) {
+            if ($request->user()->avatar) {
+                FacadesStorage::delete($request->user()->avatar);
+            }
+            $request->file('avatar')->storeAs('avatars', 'avatar-' . $request->user()->id . '.jpg');
+        }
+
+        $request->user()->update();
+
+        DB::table('users')
+            ->where('id', $request->user()->id)
+            ->update([
+                'haveAvatar' => true,
+                'avatar' => 'avatars/avatar-' . $request->user()->id . '.jpg'
+            ]);
 
         return redirect()->back()->with('success', 'Profile Updated!');
     }
