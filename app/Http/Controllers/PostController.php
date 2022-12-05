@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
+use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -22,8 +23,14 @@ class PostController extends Controller
      */
     public function index()
     {
+        $general_setting = GeneralSetting::first();
+
         return view('pages.admin.posts', [
-            "title" => "Admin Dashboard",
+            'site_title' => $general_setting->site_title,
+            "title" => "Admin",
+            "tagline" => $general_setting->site_tagline,
+            "logo_image" => $general_setting->logo_image,
+            "footer_copyright" => $general_setting->footer_copyright,
             "posts" => Post::latest()->paginate(10)->withQueryString()->sortbydesc('id'),
             "user" => Auth::user()
         ]);
@@ -36,8 +43,14 @@ class PostController extends Controller
      */
     public function create()
     {
+        $general_setting = GeneralSetting::first();
+
         return view('pages.admin.create-posts', [
-            "title" => "Admin Dashboard",
+            'site_title' => $general_setting->site_title,
+            "title" => "Admin",
+            "tagline" => $general_setting->site_tagline,
+            "logo_image" => $general_setting->logo_image,
+            "footer_copyright" => $general_setting->footer_copyright,
             "categories" => Category::all(),
             "user" => Auth::user()
         ]);
@@ -75,8 +88,15 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $general_setting = GeneralSetting::first();
+
         return view('pages.post', [
-            "title" => "Post",
+            'site_title' => $general_setting->site_title,
+            "title" => $post->title,
+            "tagline" => $general_setting->site_tagline,
+            "logo_image" => $general_setting->logo_image,
+            "footer_copyright" => $general_setting->footer_copyright,
+            "general_settings" => GeneralSetting::first(),
             "post" => $post
         ]);
     }

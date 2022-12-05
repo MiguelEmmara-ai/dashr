@@ -12,7 +12,7 @@
         </section>
     </div>
     <div class="text-center p-3" style="background-color:rgba(0, 0, 0, 0.2);">
-        <span> © <?php echo date('Y'); ?> Copyright: </span>
+        <span> © <?php echo date('Y'); ?> {{ $footer_copyright }}: </span>
         <a class="text-white" href="https://github.com/MiguelEmmara-ai/dashr" target="_blank">Dashr</a>
     </div>
 </footer>

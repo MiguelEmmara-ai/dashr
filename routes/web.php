@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,14 +24,26 @@ Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
 Route::get('/about', function () {
+    $general_setting = GeneralSetting::first();
+
     return view('pages.about', [
-        "title" => "About Us",
+        'site_title' => $general_setting->site_title,
+        'title' => 'About Us',
+        'tagline' => $general_setting->site_tagline,
+        'logo_image' => $general_setting->logo_image,
+        'footer_copyright' => $general_setting->footer_copyright,
     ]);
 })->name('about');
 
 Route::get('/contact', function () {
+    $general_setting = GeneralSetting::first();
+
     return view('pages.contact', [
-        "title" => "Contact Us",
+        'site_title' => $general_setting->site_title,
+        'title' => 'Contact Us',
+        'tagline' => $general_setting->site_tagline,
+        'logo_image' => $general_setting->logo_image,
+        'footer_copyright' => $general_setting->footer_copyright,
     ]);
 })->name('contact');
 
@@ -52,6 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::get('posts/checkSlug', [PostController::class, 'checkSlug'])
         ->name('checkSlug');
     Route::resource('posts', PostController::class);
+
+    Route::resource('general-settings', GeneralSettingController::class);
 });
 
 require __DIR__ . '/auth.php';
