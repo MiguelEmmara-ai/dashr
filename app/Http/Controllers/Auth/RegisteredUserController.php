@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\GeneralSetting;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -22,8 +23,14 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
+        $general_setting = GeneralSetting::first();
+
         return view('auth.register')->with([
-            'title' => "Register Account",
+            'site_title' => $general_setting->site_title,
+            'title' => 'Register Account',
+            'tagline' => $general_setting->site_tagline,
+            'logo_image' => $general_setting->logo_image,
+            'footer_copyright' => $general_setting->footer_copyright,
         ]);
     }
 

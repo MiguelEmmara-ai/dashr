@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\GeneralSetting;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        $general_setting = GeneralSetting::first();
+
         return view('auth.login')->with([
-            'title' => "Login To Your Account",
+            'site_title' => $general_setting->site_title,
+            'title' => 'Login To Your Account',
+            'tagline' => $general_setting->site_tagline,
+            'logo_image' => $general_setting->logo_image,
+            'footer_copyright' => $general_setting->footer_copyright,
         ]);
     }
 
@@ -35,7 +42,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
-        
     }
 
     /**
