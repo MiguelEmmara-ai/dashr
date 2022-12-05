@@ -33,6 +33,14 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label for="tags" class="form-label">Tags</label>
+                                <input type="text" data-role="tagsinput" name="tags" class="form-control @error('tags') is-invalid @enderror" value="{{ old('tags') }}" />
+                                @if ($errors->has('tags'))
+                                    <span class="text-danger">{{ $errors->first('tags') }}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label for="category" class="form-label">Category</label>
                                 <select class="form-select" name="category_id">
                                     @foreach ($categories as $category)
@@ -126,4 +134,7 @@
             }
         };
     </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
 @endsection

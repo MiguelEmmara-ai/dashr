@@ -2,21 +2,41 @@
 
 @section('content')
     <section>
-        <div class="container pb-3 pt-3 mb-3 mt-3" style="background: #ffffff;">
-            <div class="row">
+        <div class="container mb-3 mt-3">
+            {{-- Breadcrumb --}}
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="d-none d-sm-block">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Home</span></a></li>
+                    <li class="breadcrumb-item"><a
+                            href="/?category={{ $post->category->slug }}"><span>{{ $post->category->name }}</span></a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="{{ $post->slug }}"><span>{{ $post->title }}</span></a>
+                    </li>
+                </ol>
+            </nav>
+            <div class="row pb-3 pt-3 mb-3 mt-3" style="background: #ffffff;">
                 <div class="col-md-12">
                     <div>
-                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="d-none d-sm-block">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('home') }}"><span>Home</span></a></li>
-                                <li class="breadcrumb-item"><a
-                                        href="/?category={{ $post->category->slug }}"><span>{{ $post->category->name }}</span></a>
-                                </li>
-                                <li class="breadcrumb-item"><a
-                                        href="{{ $post->slug }}"><span>{{ $post->title }}</span></a>
-                                </li>
-                            </ol>
-                        </nav>
+                        {{-- Tags --}}
+                        @if ($post->tags->count())
+                            <span class="entry-categories entry-categories-l article">
+                                <span class="entry-categories-inner">
+                                    <span class="entry-categories-label">Tags: </span>
+
+                                    @php
+                                        $tagArray = [];
+                                        
+                                        foreach ($post->tags as $tag) {
+                                            $tagArray[] = $tag->name;
+                                        }
+                                    @endphp
+
+                                    <a href="#" class="entry-category entry-category-item-120">
+                                        <span>{{ implode(', ', $tagArray) }}</span>
+                                    </a>
+                                </span>
+                            </span>
+                        @endif
 
                         <h1>{{ $post->title }}
                             <br>

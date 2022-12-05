@@ -9,6 +9,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Post extends Model
 {
     use HasFactory, Sluggable;
+    use \Conner\Tagging\Taggable;
 
     protected $guarded = ['id'];
     protected $with = ['author', 'category'];

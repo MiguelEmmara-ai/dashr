@@ -34,6 +34,24 @@
                                 @enderror
                             </div>
 
+                            @php
+                                $tagArray = [];
+                                
+                                foreach ($post->tags as $tag) {
+                                    $tagArray[] = $tag->name;
+                                }
+                            @endphp
+
+                            <div class="form-group mb-3">
+                                <label for="tags" class="form-label">Tags</label>
+                                <input class="form-control @error('tags') is-invalid @enderror" type="text"
+                                    data-role="tagsinput" name="tags"
+                                    value="{{ old('tags') ? old('tags') : implode(', ', $tagArray) }}" />
+                                @if ($errors->has('tags'))
+                                    <span class="text-danger">{{ $errors->first('tags') }}</span>
+                                @endif
+                            </div>
+
                             <div class="form-group mb-3">
                                 <label for="category" class="form-label">Category</label>
                                 <select class="form-select" name="category_id">
@@ -130,4 +148,7 @@
             }
         };
     </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
 @endsection

@@ -60,7 +60,9 @@ class PostController extends Controller
             $data['image'] = $request->file('image')->store('post-images');
         }
 
-        Post::create($data);
+        $tags = explode(",", $request->tags);
+        $post = Post::create($data);
+        $post->tag($tags);
 
         return Redirect::route('posts.index')->with('success', "Success Create Post [$request->title]");
     }
@@ -125,6 +127,7 @@ class PostController extends Controller
         }
 
         $post->update($data);
+        $post->retag($request->tags);
 
         return Redirect::route('posts.index')->with('success', "Success Update Post [$request->title]");
     }
