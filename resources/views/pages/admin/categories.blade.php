@@ -7,55 +7,21 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <!-- Bootstrap Table with Header - Light -->
             <div class="card">
-                <h5 class="card-header">All Posts</h5>
+                <h5 class="card-header">All Categories</h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>Title</th>
-                                <th>Thumbnail</th>
-                                <th>Author</th>
-                                <th>Status</th>
+                                <th>Name</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        @forelse ($posts as $post)
+                        @forelse ($categories as $category)
                             <tbody class="table-border-bottom-0">
                                 <tr>
-                                    <td>{{ $post->id }}</td>
-                                    <td><strong>{{ $post->title }}</strong></td>
-                                    <td>
-                                        @if ($post->image)
-                                            <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid"
-                                                loading="lazy">
-                                        @else
-                                            <img src="https://source.unsplash.com/1100x600?{{ $post->category->name }}"
-                                                class="img-fluid" loading="lazy">
-                                        @endif
-                                    </td>
-
-                                    <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                                @if ($post->author->haveAvatar == true)
-                                                    <a href="/?author={{ $post->author->username }}"><img
-                                                            class="rounded-circle flex-shrink-0 me-3 fit-cover"
-                                                            width="40" src="{{ asset($post->author->avatar) }}"></a>
-                                                @else
-                                                    <a href="/?author={{ $post->author->username }}"><img
-                                                            class="rounded-circle flex-shrink-0 me-3 fit-cover"
-                                                            width="40"
-                                                            src="{{ asset($post->author->default_avatar) }}"></a>
-                                                @endif
-
-                                            </li>
-                                            <strong>{{ $post->author->name }}</strong>
-                                        </ul>
-                                    </td>
-
-                                    <td><span class="badge bg-label-success me-1">Published</span></td>
+                                    <td>{{ $category->id }}</td>
+                                    <td><strong>{{ $category->name }}</strong></td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -63,10 +29,10 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ route('posts.edit', $post->id) }}"><i
+                                                <a class="dropdown-item" href="{{ route('admin-categories.edit', $category->id) }}"><i
                                                         class="bx bx-edit-alt me-1"></i> Edit</a>
 
-                                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
+                                                <form action="{{ route('admin-categories.destroy', $category->id) }}" method="POST"
                                                     class="d-inline">
                                                     @csrf
 

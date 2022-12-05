@@ -69,6 +69,25 @@
             </a>
         </li>
 
+        {{-- Categories --}}
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Categories</span></li>
+
+        <li
+            class="menu-item {{ request()->is('admin-categories') ? 'active' : '' }} {{ request()->is('admin-categories/*/*') ? 'active' : '' }}">
+            <a href="{{ route('admin-categories.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Categories</div>
+            </a>
+        </li>
+
+        <!-- Create Categories -->
+        <li class="menu-item {{ request()->is('admin-categories/create') ? 'active' : '' }}">
+            <a href="{{ route('admin-categories.create') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Create Categories</div>
+            </a>
+        </li>
+
     </ul>
 </aside>
 <!-- / Menu -->

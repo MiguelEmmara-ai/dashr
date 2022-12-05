@@ -23,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
+Route::get('/categories', [HomeController::class, 'showCategories'])
+    ->name('show-categories');
+
 Route::get('/about', function () {
     $general_setting = GeneralSetting::first();
 
@@ -47,9 +50,6 @@ Route::get('/contact', function () {
     ]);
 })->name('contact');
 
-Route::get('/categories', [CategoryController::class, 'index'])
-    ->name('categories');
-
 Route::get('/random-post', [PostController::class, 'randomArticle']);
 
 Route::controller(DashboardController::class)->group(function () {
@@ -67,6 +67,10 @@ Route::middleware('auth')->group(function () {
         ->name('checkSlug');
     Route::resource('posts', PostController::class);
 
+    Route::resource('admin-categories', CategoryController::class);
+
+    Route::get('categories/checkCategorySlug', [CategoryController::class, 'checkCategorySlug'])
+        ->name('checkCategorySlug');
     Route::resource('general-settings', GeneralSettingController::class);
 });
 

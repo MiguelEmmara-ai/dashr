@@ -17,7 +17,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('categories') ? 'active' : '' }}"
-                        href="{{ route('categories') }}">Categories</a>
+                        href="{{ route('show-categories') }}">Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('about') ? 'active' : '' }}"

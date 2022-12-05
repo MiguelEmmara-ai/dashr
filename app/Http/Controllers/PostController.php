@@ -27,7 +27,7 @@ class PostController extends Controller
 
         return view('pages.admin.posts', [
             'site_title' => $general_setting->site_title,
-            "title" => "Admin",
+            "title" => "Post List",
             "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
@@ -47,7 +47,7 @@ class PostController extends Controller
 
         return view('pages.admin.create-posts', [
             'site_title' => $general_setting->site_title,
-            "title" => "Admin",
+            "title" => "Create Post",
             "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
@@ -67,7 +67,7 @@ class PostController extends Controller
         $data = $request->all();
 
         $data['user_id'] = auth()->user()->id;
-        $data['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
         if ($request->file('image')) {
             $data['image'] = $request->file('image')->store('post-images');
@@ -109,9 +109,15 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $general_setting = GeneralSetting::first();
         $post = Post::findOrFail($id);
 
         return view('pages.admin.edit-post')->with([
+            'site_title' => $general_setting->site_title,
+            "title" => "Edit | $post->title" ,
+            "tagline" => $general_setting->site_tagline,
+            "logo_image" => $general_setting->logo_image,
+            "footer_copyright" => $general_setting->footer_copyright,
             "post" => $post,
             "categories" => Category::all(),
             "user" => Auth::user()
@@ -137,7 +143,7 @@ class PostController extends Controller
         }
 
         $data['user_id'] = auth()->user()->id;
-        $data['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
         if ($request->file('image')) {
             if ($post->image) {

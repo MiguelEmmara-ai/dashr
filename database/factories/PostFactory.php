@@ -18,7 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(mt_rand(2, 8)),
-            'excerpt' => $this->faker->paragraph(mt_rand(1, 1)),
+            'excerpt' => $this->faker->paragraph(1),
             // 'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(mt_rand(5, 10))) . '</p>',
 
             // Using Map
@@ -27,7 +27,7 @@ class PostFactory extends Factory
                 ->implode(''),
 
             'user_id' => mt_rand(1, 10),
-            'category_id' =>  mt_rand(1, 3)
+            'category_id' =>  mt_rand(1, 10)
         ];
     }
 }

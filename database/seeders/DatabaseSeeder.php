@@ -61,5 +61,7 @@ class DatabaseSeeder extends Seeder
         Post::factory(30)->create();
 
         GeneralSetting::factory(1)->create();
+
+        Category::factory(7)->create();
     }
 }

@@ -58,7 +58,7 @@
                                     <a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
                                 </p>
                                 <p class="text-muted mb-0 article">
-                                    <a href="{{ route('categories') }}">Category</a>:
+                                    <a href="{{ route('show-categories') }}">Category</a>:
                                     <a href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                                 </p>
                             </div>
