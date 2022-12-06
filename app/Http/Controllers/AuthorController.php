@@ -20,6 +20,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin');
+        
         $user =  Auth::user();
         $authors = User::all();
 

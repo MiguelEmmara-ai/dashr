@@ -89,17 +89,21 @@
             </a>
         </li>
 
-        {{-- Author --}}
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Author</span></li>
+        {{-- Only Admin Can Have Access To Author Page --}}
+        @can('admin')
+            {{-- Author --}}
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Author</span></li>
 
-        <!-- Auhtor List -->
-        <li
-            class="menu-item {{ request()->is('author*') ? 'active' : '' }}">
-            <a href="{{ route('authors.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Authors</div>
-            </a>
-        </li>
+            <!-- Auhtor List -->
+            <li class="menu-item {{ request()->is('author*') ? 'active' : '' }}">
+                <a href="{{ route('authors.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-collection"></i>
+                    <div data-i18n="Basic">Authors</div>
+                </a>
+            </li>
+        @endcan
+
+
 
     </ul>
 </aside>
