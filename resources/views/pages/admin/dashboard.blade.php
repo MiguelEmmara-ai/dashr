@@ -50,7 +50,7 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                                                <a class="dropdown-item" href="javascript:void(0);">View
+                                                <a class="dropdown-item" href="{{ route('authorPost', $user->id) }}">View
                                                     More</a>
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                                <a class="dropdown-item" href="javascript:void(0);">View
+                                                <a class="dropdown-item" href="{{ route('posts.index') }}">View
                                                     More</a>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                                                <a class="dropdown-item" href="javascript:void(0);">View
+                                                <a class="dropdown-item" href="{{ route('admin-categories.index') }}">View
                                                     More</a>
                                             </div>
                                         </div>

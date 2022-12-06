@@ -7,10 +7,12 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\GeneralSetting;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
@@ -114,7 +116,7 @@ class PostController extends Controller
 
         return view('pages.admin.edit-post')->with([
             'site_title' => $general_setting->site_title,
-            "title" => "Edit | $post->title" ,
+            "title" => "Edit | $post->title",
             "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
@@ -175,6 +177,29 @@ class PostController extends Controller
         $post->delete();
 
         return Redirect::route('posts.index')->with('success', 'Success Delete Post');
+    }
+
+    public function authorPost($id)
+    {
+        $general_setting = GeneralSetting::first();
+
+        $user = DB::table('users')
+            ->where('id', '=', $id)
+            ->get()
+            ->first();
+
+        $posts = Post::with('category')->where('user_id', $id)->paginate(5);
+
+        return view('pages.admin.author-post', [
+            'site_title' => $general_setting->site_title,
+            "title" => "Post By $user->name",
+            "tagline" => $general_setting->site_tagline,
+            "logo_image" => $general_setting->logo_image,
+            "footer_copyright" => $general_setting->footer_copyright,
+            "general_settings" => GeneralSetting::first(),
+            "posts" => $posts,
+            "user" => $user
+        ]);
     }
 
     public function checkSlug(Request $request)

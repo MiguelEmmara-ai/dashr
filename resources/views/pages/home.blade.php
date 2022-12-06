@@ -6,13 +6,13 @@
             @foreach ($posts as $post)
                 <div class="container" style="background: #ffffff;margin-top: 10px;margin-bottom: 10px;">
                     <div class="row mb-2" style="padding-bottom: 10px;border-width: 2px;padding-top: 10px;">
-                        <div class="col-md-3">
-                            <div class="d-xl-flex align-items-xl-center">
+                        <div class="col-md-3 justify-content-center">
+                            <div>
                                 <a href="{{ $post->slug }}">
                                     @if ($post->image)
                                         <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid" loading="lazy">
                                     @else
-                                        <img src="https://source.unsplash.com/1100x600?{{ $post->category->name }}"
+                                        <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}"
                                             class="img-fluid" loading="lazy">
                                     @endif
 
@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="col">
-                            <div>
+                            <div class="mt-4">
                                 <div class="article">
                                     <a href="{{ $post->slug }}">
                                         <h3 class="d-xl-flex">{{ $post->title }}

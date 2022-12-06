@@ -44,6 +44,11 @@ class DatabaseSeeder extends Seeder
         User::factory(9)->create();
 
         Category::create([
+            'name' => 'Uncategorized',
+            'slug' => 'uncategorized'
+        ]);
+
+        Category::create([
             'name' => 'Web Programming',
             'slug' => 'web-programming'
         ]);

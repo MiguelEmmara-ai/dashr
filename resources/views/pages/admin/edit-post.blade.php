@@ -43,7 +43,7 @@
                             @endphp
 
                             <div class="form-group mb-3">
-                                <label for="tags" class="form-label">Tags</label>
+                                <label for="tags" class="form-label">Tags (Coma Seperated)</label>
                                 <input class="form-control @error('tags') is-invalid @enderror" type="text"
                                     data-role="tagsinput" name="tags"
                                     value="{{ old('tags') ? old('tags') : implode(', ', $tagArray) }}" />

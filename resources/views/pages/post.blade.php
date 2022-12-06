@@ -69,7 +69,7 @@
                                 class="img-fluid" loading="lazy">
                         @else
                             <img width="850" height="700"
-                                src="https://source.unsplash.com/1100x600?{{ $post->category->name }}" class="img-fluid"
+                                src="https://source.unsplash.com/1200x800?{{ $post->category->name }}" class="img-fluid"
                                 loading="lazy">
                         @endif
 

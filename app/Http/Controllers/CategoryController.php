@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\GeneralSetting;
+use App\Models\Post;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,7 +80,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return Redirect::route('admin-categories.index');
     }
 
     /**
@@ -127,8 +128,6 @@ class CategoryController extends Controller
             $data['slug'] = $request->slug;
         }
 
-        // dd($data);
-
         $category->update($data);
 
         return Redirect::route('admin-categories.index')->with('success', "Success Update Category [$request->name]");
@@ -144,7 +143,16 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
+        // Prevent user delete uncategorized category
+        if ($id == 1) {
+            return Redirect::route('admin-categories.index')->with('error', 'Cannot Delete Uncategorized');
+        }
+
         $category->delete();
+
+        // Also detach from posts, not delete, 1 means uncategorized
+        Post::where('category_id', $id)
+            ->update(['category_id' => 1]);
 
         return Redirect::route('admin-categories.index')->with('success', 'Success Delete Category');
     }

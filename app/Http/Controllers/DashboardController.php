@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class DashboardController extends Controller
 {
@@ -39,6 +40,31 @@ class DashboardController extends Controller
             "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(10)->withQueryString(),
             "user" => Auth::user()
         ]);
+    }
+
+    public function authors()
+    {
+        $user =  Auth::user();
+        $authors = User::all();
+
+        return view('pages.admin.authors', [
+            "general_settings" => GeneralSetting::first(),
+            "title" => "Authors",
+            "tagline" => "Dashboard",
+            "authors" => $authors,
+            "user" => $user
+        ]);
+    }
+
+    public function deleteAuthor($id)
+    {
+        // Delete Post Of That Author
+        Post::where('user_id', $id)->delete();
+
+        // Delete Author
+        User::destroy($id);
+
+        return Redirect::route('authors')->with('success', 'Success Delete Author');
     }
 
     public function logout(Request $request)

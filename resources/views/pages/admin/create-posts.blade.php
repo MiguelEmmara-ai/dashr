@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="tags" class="form-label">Tags</label>
+                                <label for="tags" class="form-label">Tags (Coma Seperated)</label>
                                 <input type="text" data-role="tagsinput" name="tags" class="form-control @error('tags') is-invalid @enderror" value="{{ old('tags') }}" />
                                 @if ($errors->has('tags'))
                                     <span class="text-danger">{{ $errors->first('tags') }}</span>
