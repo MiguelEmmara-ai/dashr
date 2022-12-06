@@ -42,31 +42,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function authors()
-    {
-        $user =  Auth::user();
-        $authors = User::all();
-
-        return view('pages.admin.authors', [
-            "general_settings" => GeneralSetting::first(),
-            "title" => "Authors",
-            "tagline" => "Dashboard",
-            "authors" => $authors,
-            "user" => $user
-        ]);
-    }
-
-    public function deleteAuthor($id)
-    {
-        // Delete Post Of That Author
-        Post::where('user_id', $id)->delete();
-
-        // Delete Author
-        User::destroy($id);
-
-        return Redirect::route('authors')->with('success', 'Success Delete Author');
-    }
-
     public function logout(Request $request)
     {
         Auth::logout();

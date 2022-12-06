@@ -20,7 +20,7 @@
                             @enderror
                         </div>
 
-                        <form action="{{ route('author.update', $author->id) }}" method="POST" class="mb-5">
+                        <form action="{{ route('authors.update', $author->id) }}" method="POST" class="mb-5">
                             @method('PUT')
                             @csrf
 
@@ -31,7 +31,7 @@
                                     </option>
                                     <option value="PENDING">PENDING</option>
                                     <option value="SUSPEND">SUSPEND</option>
-                                    <option value="SUCCESS">ACTIVE</option>
+                                    <option value="ACTIVE">ACTIVE</option>
                                 </select>
                             </div>
 

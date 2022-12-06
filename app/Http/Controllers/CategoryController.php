@@ -143,14 +143,14 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        // Prevent user delete uncategorized category
+        // Prevent user to delete 'uncategorized' category
         if ($id == 1) {
             return Redirect::route('admin-categories.index')->with('error', 'Cannot Delete Uncategorized');
         }
 
         $category->delete();
 
-        // Also detach from posts, not delete, 1 means uncategorized
+        // Also detach that category from the posts, not delete, 1 means 'uncategorized' category
         Post::where('category_id', $id)
             ->update(['category_id' => 1]);
 

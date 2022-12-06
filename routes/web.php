@@ -56,10 +56,6 @@ Route::get('/random-post', [PostController::class, 'randomArticle']);
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
-    Route::get('/authors', [DashboardController::class, 'authors'])
-        ->name('authors');
-    Route::delete('/authors/{id}', [DashboardController::class, 'deleteAuthor'])
-        ->name('author.destroy');
     Route::get('/logout', [DashboardController::class, 'logout']);
 });
 
@@ -80,7 +76,7 @@ Route::middleware('auth')->group(function () {
         ->name('checkCategorySlug');
     Route::resource('general-settings', GeneralSettingController::class);
 
-    Route::resource('author', AuthorController::class);
+    Route::resource('authors', AuthorController::class);
 });
 
 require __DIR__ . '/auth.php';

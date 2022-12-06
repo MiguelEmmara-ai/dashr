@@ -20,39 +20,16 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $user =  Auth::user();
+        $authors = User::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
+        return view('pages.admin.authors', [
+            "general_settings" => GeneralSetting::first(),
+            "title" => "Authors",
+            "tagline" => "Dashboard",
+            "authors" => $authors,
+            "user" => $user
+        ]);
     }
 
     /**
@@ -95,7 +72,7 @@ class AuthorController extends Controller
 
         $item->update($data);
 
-        return Redirect::route('authors')->with('success', "Success Update User [$item->name]");
+        return Redirect::route('authors.index')->with('success', "Success Update User [$item->name]");
     }
 
     /**
@@ -104,8 +81,14 @@ class AuthorController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $user, $id)
     {
-        //
+        // Delete Post Of That Author
+        Post::where('user_id', $id)->delete();
+
+        // Delete Author
+        $user->destroy($id);
+
+        return Redirect::route('authors.index')->with('success', 'Success Delete Author');
     }
 }

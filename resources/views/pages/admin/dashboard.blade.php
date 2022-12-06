@@ -122,7 +122,7 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                                                <a class="dropdown-item" href="{{ route('authors') }}">View
+                                                <a class="dropdown-item" href="{{ route('authors.index') }}">View
                                                     More</a>
                                             </div>
                                         </div>
