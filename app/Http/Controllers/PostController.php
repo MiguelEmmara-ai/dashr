@@ -34,7 +34,7 @@ class PostController extends Controller
             "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
-            "posts" => Post::latest()->paginate(10)->withQueryString()->sortbydesc('id'),
+            "posts" => Post::latest()->orderBy('id', 'desc')->filter(request(['search', 'category', 'author']))->paginate(8)->withQueryString(),
             "user" => Auth::user()
         ]);
     }

@@ -20,7 +20,6 @@ class CategoryController extends Controller
     public function index()
     {
         $general_setting = GeneralSetting::first();
-        $categories = Category::all();
 
         return view('pages.admin.categories', [
             'site_title' => $general_setting->site_title,
@@ -28,7 +27,7 @@ class CategoryController extends Controller
             'tagline' => $general_setting->site_tagline,
             'logo_image' => $general_setting->logo_image,
             'footer_copyright' => $general_setting->footer_copyright,
-            'categories' => $categories,
+            'categories' => Category::latest()->paginate(8)->withQueryString(),
             'user' => Auth::user()
         ]);
     }
