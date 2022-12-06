@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -111,8 +112,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $general_setting = GeneralSetting::first();
         $post = Post::findOrFail($id);
+
+        // Authorize if user is the owner of the post or user_types is 'admin'
+        Gate::authorize('update-post', $post);
+
+        $general_setting = GeneralSetting::first();
 
         return view('pages.admin.edit-post')->with([
             'site_title' => $general_setting->site_title,
@@ -138,6 +143,9 @@ class PostController extends Controller
         $data = $request->all();
 
         $post = Post::findOrFail($id);
+
+        // Authorize if user is the owner of the post or user_types is 'admin'
+        Gate::authorize('update-post', $post);
 
         // Check if the slug has been change
         if ($request->slug != $post->slug) {
