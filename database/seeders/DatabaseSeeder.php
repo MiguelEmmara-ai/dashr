@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('admin123'),
             'user_types' => 'admin',
+            'user_status' => 'ACTIVE',
         ]);
 
         Avatar::create('Miguel Emmara')->save(storage_path('app/public/default_avatar-1.jpg'), 100);

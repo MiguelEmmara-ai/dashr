@@ -8,35 +8,35 @@
             <!-- Form controls -->
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <h5 class="card-header">Edit Category</h5>
+                    <h5 class="card-header">Edit Author {{ $user->name }}</h5>
                     <div class="card-body">
 
-                        <form action="{{ route('admin-categories.update', $category->id) }}" method="POST" class="mb-5">
+                        <div class="form-group mb-3">
+                            <label for="status" class="form-label">User Name</label>
+                            <input type="text" class="form-control @error('status') is-invalid @enderror" name="status"
+                                id="status" readonly value="{{ $author->name }}">
+                            @error('status')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <form action="{{ route('author.update', $author->id) }}" method="POST" class="mb-5">
                             @method('PUT')
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label for="name" class="form-label">Category Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" id="name" required placeholder="Category Name" autofocus
-                                    value="{{ old('name') ? old('name') : $category->name }}">
-                                @error('name')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <label for="title">Status</label>
+                                <select name="user_status" required class="form-control">
+                                    <option value="{{ $author->user_status }}">({{ $author->user_status }})
+                                    </option>
+                                    <option value="PENDING">PENDING</option>
+                                    <option value="SUSPEND">SUSPEND</option>
+                                    <option value="SUCCESS">ACTIVE</option>
+                                </select>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="slug" class="form-label">Slug</label>
-                                <input type="text" class="form-control @error('slug') is-invalid @enderror"
-                                    name="slug" id="slug" required
-                                    value="{{ old('slug') ? old('slug') : $category->slug }}">
-                                @error('slug')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-primary">Update Category</button>
+                                <button type="submit" class="btn btn-primary">Update Status</button>
                             </div>
                         </form>
 

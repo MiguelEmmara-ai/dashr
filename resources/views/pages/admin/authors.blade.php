@@ -29,6 +29,9 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('author.edit', $author->id) }}"><i
+                                                        class="bx bx-edit-alt me-1"></i> Edit</a>
+
                                                 <form method="POST" action="{{ route('author.destroy', $author->id) }}"
                                                     class="d-inline">
                                                     @csrf

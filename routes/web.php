@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GeneralSettingController;
@@ -69,7 +70,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('posts/checkSlug', [PostController::class, 'checkSlug'])
         ->name('checkSlug');
-    Route::get('posts/authorPost/{id}', [PostController::class, 'authorPost'])
+    Route::get('posts/authorpost/{id}', [PostController::class, 'authorPost'])
         ->name('authorPost');
     Route::resource('posts', PostController::class);
 
@@ -78,6 +79,8 @@ Route::middleware('auth')->group(function () {
     Route::get('categories/checkCategorySlug', [CategoryController::class, 'checkCategorySlug'])
         ->name('checkCategorySlug');
     Route::resource('general-settings', GeneralSettingController::class);
+
+    Route::resource('author', AuthorController::class);
 });
 
 require __DIR__ . '/auth.php';

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules;
 use Laravolt\Avatar\Facade as Avatar;
 
@@ -63,6 +64,8 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'haveAvatar' => false,
             'password' => Hash::make($request->password),
+            'user_types' => 'bloggers',
+            'user_status' => 'PENDING',
         ]);
 
         // Create default avatar
@@ -88,8 +91,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME)->withSuccess('Registered Successfully!');
+        // return redirect(RouteServiceProvider::HOME)->withSuccess('Registered Successfully!');
+        return Redirect::route('login')->with('success', "Registered Successfully!\nWaiting for approval");
     }
 }
