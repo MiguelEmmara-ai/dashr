@@ -7,7 +7,6 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\GeneralSetting;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -26,6 +25,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
         return view('pages.admin.posts', [
@@ -46,6 +46,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
         return view('pages.admin.create-posts', [
@@ -69,15 +70,26 @@ class PostController extends Controller
     {
         $data = $request->all();
 
+        // Save user_id from the logged in user id
         $data['user_id'] = auth()->user()->id;
+
+        // Save and limit excerpt by 100 char from body text
         $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
+        // Save image file to storage/post-images
         if ($request->file('image')) {
             $data['image'] = $request->file('image')->store('post-images');
         }
 
+        // We need to seperate tags by commas
+        // Use implode() function to join
+        // comma in the array
         $tags = explode(",", $request->tags);
+
+        // Save post records
         $post = Post::create($data);
+
+        // Save tags
         $post->tag($tags);
 
         return Redirect::route('posts.index')->with('success', "Success Create Post [$request->title]");
@@ -91,6 +103,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
         return view('pages.post', [
@@ -117,6 +130,7 @@ class PostController extends Controller
         // Authorize if user is the owner of the post or user_types is 'admin'
         Gate::authorize('update-post', $post);
 
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
         return view('pages.admin.edit-post')->with([
@@ -152,17 +166,25 @@ class PostController extends Controller
             $data['slug'] = 'required|unique:posts';
         }
 
+        // Save user_id from the logged in user id
         $data['user_id'] = auth()->user()->id;
+
+        // Save and limit excerpt by 100 char from body text
         $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
+        // Save image file to storage/post-images
         if ($request->file('image')) {
+            // Will delete existing image before storing new images
             if ($post->image) {
                 FacadesStorage::delete($post->image);
             }
             $data['image'] = $request->file('image')->store('post-images');
         }
 
+        // Save post records
         $post->update($data);
+
+        // Replace Tags
         $post->retag($request->tags);
 
         return Redirect::route('posts.index')->with('success', "Success Update Post [$request->title]");
@@ -178,6 +200,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        // Also delete that post image
         if ($post->image) {
             FacadesStorage::delete($post->image);
         }
@@ -187,29 +210,46 @@ class PostController extends Controller
         return Redirect::route('posts.index')->with('success', 'Success Delete Post');
     }
 
+    /**
+     * Display author-post
+     *
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
     public function authorPost($id)
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
-        $user = DB::table('users')
+        // Get first records where id = $id
+        // Use to display the name record in the single author page
+        $user_post = DB::table('users')
             ->where('id', '=', $id)
             ->get()
             ->first();
 
+        // Get posts records where user_id = $id, paginate by 5
         $posts = Post::with('category')->where('user_id', $id)->paginate(5);
 
         return view('pages.admin.author-post', [
             'site_title' => $general_setting->site_title,
-            "title" => "Post By $user->name",
+            "title" => "Post By $user_post->name",
             "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
             "general_settings" => GeneralSetting::first(),
             "posts" => $posts,
-            "user" => $user
+            "user_post" => $user_post,
+            "user" => Auth::user()
         ]);
     }
 
+    /**
+     * Check if the post slug already exist in the records
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */
     public function checkSlug(Request $request)
     {
         $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
@@ -217,6 +257,12 @@ class PostController extends Controller
         return response()->json(['slug' => $slug]);
     }
 
+    /**
+     * Generate and Display random article
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function randomArticle(Post $post)
     {
         $post = Post::all();
@@ -226,6 +272,12 @@ class PostController extends Controller
         return redirect("/$slug");
     }
 
+    /**
+     * Static helper function to get next post link
+     *
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
     public static function nextPost($id)
     {
         // get the current post id
@@ -246,6 +298,12 @@ class PostController extends Controller
         return ("/$slug");
     }
 
+    /**
+     * Static helper function to get prev post link
+     *
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
     public static function prevPost($id)
     {
         // get the current post id

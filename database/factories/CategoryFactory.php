@@ -17,6 +17,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
+            // Generate Random Category name
             'name' => $this->faker->word(),
         ];
     }

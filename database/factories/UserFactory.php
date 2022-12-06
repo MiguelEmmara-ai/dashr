@@ -19,10 +19,9 @@ class UserFactory extends Factory
     public function definition()
     {
         // Generate default avatar for dummy users
+        // Start from 2, because in dbseeder, we init the first user (admin)
         static $id = 2;
-
         $fake_name = fake()->name();
-
         Avatar::create($fake_name)->save(storage_path('app/public/default_avatar-' . $id . '.jpg'), 100);
 
         return [

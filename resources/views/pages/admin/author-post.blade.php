@@ -7,7 +7,7 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <!-- Bootstrap Table with Header - Light -->
             <div class="card">
-                <h5 class="card-header">All Posts By {{ $user->name }}</h5>
+                <h5 class="card-header">All Posts By {{ $user_post->name }}</h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead class="table-light">

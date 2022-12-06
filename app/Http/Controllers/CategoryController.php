@@ -19,6 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
         return view('pages.admin.categories', [
@@ -39,6 +40,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
         return view('pages.admin.create-categories', [
@@ -77,8 +79,14 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show()
     {
+        /**
+         * Since we are now displaying single category,
+         * We return /admin-categories when user tries to access
+         * /admin-categories/{id}
+         *
+         */
         return Redirect::route('admin-categories.index');
     }
 
@@ -90,6 +98,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category, $id)
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
         $category = Category::findOrFail($id);
 
@@ -147,6 +156,7 @@ class CategoryController extends Controller
             return Redirect::route('admin-categories.index')->with('error', 'Cannot Delete Uncategorized');
         }
 
+        // Delete category record
         $category->delete();
 
         // Also detach that category from the posts, not delete, 1 means 'uncategorized' category
@@ -156,6 +166,12 @@ class CategoryController extends Controller
         return Redirect::route('admin-categories.index')->with('success', 'Success Delete Category');
     }
 
+    /**
+     * Check if the category slug already exist in the records
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */
     public function checkCategorySlug(Request $request)
     {
         $slug = SlugService::createSlug(Category::class, 'slug', $request->name);

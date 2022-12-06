@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Init Paginator
         Paginator::useBootstrap();
 
         // Authorize if user is the owner of the post or user_types is 'admin'

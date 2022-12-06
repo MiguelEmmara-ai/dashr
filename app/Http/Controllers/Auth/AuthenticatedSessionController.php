@@ -20,6 +20,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
         return view('auth.login')->with([
@@ -41,6 +42,7 @@ class AuthenticatedSessionController extends Controller
     {
         $user = User::where('username', $request->username)->first();
 
+        // Only ACTIVE user can log in, after use register they will need to be approve by admin
         if ($user->user_status == 'PENDING') {
             return Redirect::route('login')->with('error', "Your Account Is Still Pending Approval");
         } else if ($user->user_status == 'SUSPEND') {

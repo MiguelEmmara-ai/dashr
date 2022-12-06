@@ -15,6 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
 
         return view('pages.home', [
@@ -29,8 +30,9 @@ class HomeController extends Controller
 
     public function showCategories()
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
-        $categories = Category::all();
+        $categories = Category::with('posts')->get();
 
         return view('pages.categories', [
             'site_title' => $general_setting->site_title,

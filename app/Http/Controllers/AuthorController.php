@@ -20,6 +20,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
+        // Only user with user_types admin can access this page
         $this->authorize('admin');
         
         $user =  Auth::user();
@@ -42,7 +43,10 @@ class AuthorController extends Controller
      */
     public function edit(User $user, $id)
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
+
+        // Get Post and Users with id
         $post = Post::findOrFail($id);
         $user = $user->findOrFail($id);
 
