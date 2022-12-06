@@ -14,6 +14,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    
+    <!-- Styles -->
     @stack('prepend-style')
     @include('includes.frontend.style')
     @stack('addon-style')
