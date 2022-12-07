@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Models\GeneralSetting;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -23,10 +24,13 @@ class AuthenticatedSessionController extends Controller
         // General Setting of the website
         $general_setting = GeneralSetting::first();
 
+        SEOTools::setTitle("Login To Your Account | $general_setting->site_tagline");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('auth.login')->with([
             'site_title' => $general_setting->site_title,
-            'title' => 'Login To Your Account',
-            'tagline' => $general_setting->site_tagline,
             'logo_image' => $general_setting->logo_image,
             'footer_copyright' => $general_setting->footer_copyright,
         ]);

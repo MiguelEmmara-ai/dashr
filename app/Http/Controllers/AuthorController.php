@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\GeneralSetting;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -26,10 +26,16 @@ class AuthorController extends Controller
         $user =  Auth::user();
         $authors = User::all();
 
+        // General Setting of the website
+        $general_setting = GeneralSetting::first();
+
+        SEOTools::setTitle("Authors | Dashboard");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('pages.admin.authors', [
             "general_settings" => GeneralSetting::first(),
-            "title" => "Authors",
-            "tagline" => "Dashboard",
             "authors" => $authors,
             "user" => $user
         ]);
@@ -50,10 +56,13 @@ class AuthorController extends Controller
         $post = Post::findOrFail($id);
         $user = $user->findOrFail($id);
 
+        SEOTools::setTitle("Edit Author $user->name | Dashboard");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('pages.admin.edit-authors')->with([
             'site_title' => $general_setting->site_title,
-            "title" => "Edit Author $user->name",
-            "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
             "post" => $post,

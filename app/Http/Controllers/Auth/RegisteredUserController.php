@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\GeneralSetting;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -24,12 +23,16 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
+        // General Setting of the website
         $general_setting = GeneralSetting::first();
+
+        SEOTools::setTitle("Register Account | $general_setting->site_tagline");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
 
         return view('auth.register')->with([
             'site_title' => $general_setting->site_title,
-            'title' => 'Register Account',
-            'tagline' => $general_setting->site_tagline,
             'logo_image' => $general_setting->logo_image,
             'footer_copyright' => $general_setting->footer_copyright,
         ]);

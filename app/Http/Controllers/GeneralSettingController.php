@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GeneralSettingRequest;
 use App\Models\GeneralSetting;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,8 +17,15 @@ class GeneralSettingController extends Controller
      */
     public function index()
     {
+        // General Setting of the website
+        $general_setting = GeneralSetting::first();
+
+        SEOTools::setTitle("General Setitngs | Dashboard");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('pages.admin.general-settings', [
-            "title" => "General Setitngs",
             "general" => GeneralSetting::where('id', '1')->first(),
             "user" => Auth::user()
         ]);
