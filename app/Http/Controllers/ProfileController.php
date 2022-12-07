@@ -49,21 +49,22 @@ class ProfileController extends Controller
         }
 
         if ($request->file('avatar')) {
+            dd($request->file('avatar'));
             if ($request->user()->avatar) {
                 FacadesStorage::delete($request->user()->avatar);
             }
             $request->file('avatar')->storeAs('avatars', 'avatar-' . $request->user()->id . '.jpg');
+
+            DB::table('users')
+                ->where('id', $request->user()->id)
+                ->update([
+                    'haveAvatar' => true,
+                    'avatar' => 'avatars/avatar-' . $request->user()->id . '.jpg'
+                ]);
         }
 
         $request->user()->update();
-
-        DB::table('users')
-            ->where('id', $request->user()->id)
-            ->update([
-                'haveAvatar' => true,
-                'avatar' => 'avatars/avatar-' . $request->user()->id . '.jpg'
-            ]);
-
+        
         return redirect()->back()->with('success', 'Profile Updated!');
     }
 

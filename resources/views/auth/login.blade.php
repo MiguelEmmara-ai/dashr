@@ -6,8 +6,9 @@
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
                     <h2>Log in</h2>
-                    <p class="w-lg-50"><span style="color: rgb(108, 117, 125);">Enter your email address and password to
+                    <p class="w-lg-50"><span style="color: rgb(108, 117, 125);">Enter your username and password to
                             access admin panel.</span><br></p>
+
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
@@ -23,18 +24,6 @@
                                 </svg></div>
                             <form class="text-center col-lg-10" method="POST" action="{{ route('login') }}">
                                 @csrf
-                                
-                                {{-- <div class="mb-3">
-                                    <input class="form-control @error('email') is-invalid @enderror" type="email"
-                                        name="email" placeholder="Email" autofocus="" required=""
-                                        value="{{ old('email') }}">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div> --}}
 
                                 <div class="mb-3">
                                     <input class="form-control @error('username') is-invalid @enderror" type="text"
