@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\GeneralSetting;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +21,15 @@ class ProfileController extends Controller
      */
     public function edit(Request $request)
     {
+        // General Setting of the website
+        $general_setting = GeneralSetting::first();
+
+        SEOTools::setTitle("Account Setitng | Dashboard");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('profile.edit', [
-            'title' => "Account Setitng",
             'user' => $request->user(),
         ]);
     }

@@ -6,10 +6,12 @@
             </span>
             <span>| {{ $site_title }}</span>
         </a>
+
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
             <span class="visually-hidden">Toggle navigation</span>
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
@@ -36,5 +38,6 @@
             <a class="btn btn-primary ms-md-2" role="button" href="{{ route('register') }}"
                 style="background: rgb(255,255,255);color: rgb(0,0,0);">Sign Up</a>
         </div>
+
     </div>
 </nav>

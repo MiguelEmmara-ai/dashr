@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\GeneralSetting;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,24 +29,32 @@ Route::get('/categories', [HomeController::class, 'showCategories'])
     ->name('show-categories');
 
 Route::get('/about', function () {
+    // General Setting of the website
     $general_setting = GeneralSetting::first();
+
+    SEOTools::setTitle("About Us | $general_setting->site_tagline");
+    SEOTools::setDescription("$general_setting->site_meta_description");
+    SEOTools::setCanonical(url()->current());
+    SEOTools::opengraph()->addProperty('type', 'webiste');
 
     return view('pages.about', [
         'site_title' => $general_setting->site_title,
-        'title' => 'About Us',
-        'tagline' => $general_setting->site_tagline,
         'logo_image' => $general_setting->logo_image,
         'footer_copyright' => $general_setting->footer_copyright,
     ]);
 })->name('about');
 
 Route::get('/contact', function () {
+    // General Setting of the website
     $general_setting = GeneralSetting::first();
+
+    SEOTools::setTitle("Contact Us | $general_setting->site_tagline");
+    SEOTools::setDescription("$general_setting->site_meta_description");
+    SEOTools::setCanonical(url()->current());
+    SEOTools::opengraph()->addProperty('type', 'webiste');
 
     return view('pages.contact', [
         'site_title' => $general_setting->site_title,
-        'title' => 'Contact Us',
-        'tagline' => $general_setting->site_tagline,
         'logo_image' => $general_setting->logo_image,
         'footer_copyright' => $general_setting->footer_copyright,
     ]);

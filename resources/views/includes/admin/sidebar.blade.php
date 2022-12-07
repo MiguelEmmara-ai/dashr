@@ -25,30 +25,32 @@
             </a>
         </li>
 
+        <!-- Settings -->
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Settings</span>
         </li>
+
         <li
-            class="menu-item {{ request()->is('profile') ? 'active' : '' }} {{ request()->is('general-settings*') ? 'active' : '' }}">
-            <a href="#" class="menu-link menu-toggle">
+            class="menu-item {{ request()->is('profile') ? 'active open' : '' }} {{ request()->is('general-settings*') ? 'active open' : '' }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Settings</div>
+                <div data-i18n="Settings">Settings</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('general-settings*') ? 'active' : '' }}">
                     <a href="{{ route('general-settings.index') }}" class="menu-link">
-                        <div data-i18n="Account">General Settings</div>
+                        <div data-i18n="Site Settings">General Site Settings</div>
                     </a>
                 </li>
-            </ul>
-            <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile.edit') }}" class="menu-link">
                         <div data-i18n="Account">Account</div>
                     </a>
                 </li>
             </ul>
         </li>
+
+
         <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Posts</span></li>
 
@@ -97,7 +99,7 @@
             <!-- Auhtor List -->
             <li class="menu-item {{ request()->is('author*') ? 'active' : '' }}">
                 <a href="{{ route('authors.index') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-collection"></i>
+                    <i class="menu-icon tf-icons bx bx-crown"></i>
                     <div data-i18n="Basic">Authors</div>
                 </a>
             </li>

@@ -7,6 +7,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\GeneralSetting;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -28,10 +29,13 @@ class PostController extends Controller
         // General Setting of the website
         $general_setting = GeneralSetting::first();
 
+        SEOTools::setTitle("Post List | Dashboard");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('pages.admin.posts', [
             'site_title' => $general_setting->site_title,
-            "title" => "Post List",
-            "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
             "posts" => Post::latest()->orderBy('id', 'desc')->filter(request(['search', 'category', 'author']))->paginate(8)->withQueryString(),
@@ -49,10 +53,13 @@ class PostController extends Controller
         // General Setting of the website
         $general_setting = GeneralSetting::first();
 
+        SEOTools::setTitle("Create Post | Dashboard");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('pages.admin.create-posts', [
             'site_title' => $general_setting->site_title,
-            "title" => "Create Post",
-            "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
             "categories" => Category::all(),
@@ -106,10 +113,13 @@ class PostController extends Controller
         // General Setting of the website
         $general_setting = GeneralSetting::first();
 
+        SEOTools::setTitle("$post->title | $general_setting->site_title | $general_setting->site_tagline");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('pages.post', [
             'site_title' => $general_setting->site_title,
-            "title" => $post->title,
-            "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
             "general_settings" => GeneralSetting::first(),
@@ -133,10 +143,13 @@ class PostController extends Controller
         // General Setting of the website
         $general_setting = GeneralSetting::first();
 
+        SEOTools::setTitle("Edit | $post->title");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('pages.admin.edit-post')->with([
             'site_title' => $general_setting->site_title,
-            "title" => "Edit | $post->title",
-            "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
             "post" => $post,
@@ -231,10 +244,13 @@ class PostController extends Controller
         // Get posts records where user_id = $id, paginate by 5
         $posts = Post::with('category')->where('user_id', $id)->paginate(5);
 
+        SEOTools::setTitle("Post By $user_post->name");
+        SEOTools::setDescription("$general_setting->site_meta_description");
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'webiste');
+
         return view('pages.admin.author-post', [
             'site_title' => $general_setting->site_title,
-            "title" => "Post By $user_post->name",
-            "tagline" => $general_setting->site_tagline,
             "logo_image" => $general_setting->logo_image,
             "footer_copyright" => $general_setting->footer_copyright,
             "general_settings" => GeneralSetting::first(),
