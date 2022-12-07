@@ -40,6 +40,7 @@ After opning your .env file, change the database name (DB_DATABASE) to whatever 
 Then we can run
 ```shell
 php artisan migrate:fresh --seed
+npm install && npm run build
 php artisan serve
 ```
 
