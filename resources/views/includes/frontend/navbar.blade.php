@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
             <span class="d-flex justify-content-center align-items-center me-2 bs-icon">
-                <img src="{{ $logo_image }}">
+                <img src="{{ $logo_image }}" alt="{{ $site_title }}" width="35" height="30">
             </span>
             <span>| {{ $site_title }}</span>
         </a>
