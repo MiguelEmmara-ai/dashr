@@ -137,7 +137,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        // Authorize if user is the owner of the post or user_types is 'admin'
+        // Authorize if user is the owner of the post or user_types is 'Admin'
         Gate::authorize('update-post', $post);
 
         // General Setting of the website
@@ -171,17 +171,14 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
 
-        // Authorize if user is the owner of the post or user_types is 'admin'
+        // Authorize if user is the owner of the post or user_types is 'Admin'
         Gate::authorize('update-post', $post);
 
         // Check if the slug has been change
         if ($request->slug != $post->slug) {
             $data['slug'] = 'required|unique:posts';
         }
-
-        // Save user_id from the logged in user id
-        $data['user_id'] = auth()->user()->id;
-
+        
         // Save and limit excerpt by 100 char from body text
         $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
 

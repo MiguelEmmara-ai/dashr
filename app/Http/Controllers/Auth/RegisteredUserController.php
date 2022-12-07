@@ -67,7 +67,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'haveAvatar' => false,
             'password' => Hash::make($request->password),
-            'user_types' => 'bloggers',
+            'user_types' => 'Bloggers',
             'user_status' => 'PENDING',
         ]);
 

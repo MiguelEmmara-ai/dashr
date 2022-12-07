@@ -43,7 +43,7 @@ class DashboardController extends Controller
             "categoryLists" => count(Category::get('id')),
             "yourPost" => count(Post::where('user_id', '=', Auth::id())->get()),
             "totalAuthors" => count(User::get('id')),
-            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(10)->withQueryString(),
+            "posts" => Post::latest()->orderBy('id', 'desc')->filter(request(['search', 'category', 'author']))->paginate(10)->withQueryString(),
             "user" => Auth::user()
         ]);
     }

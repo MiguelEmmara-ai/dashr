@@ -21,7 +21,7 @@ class AuthorController extends Controller
     public function index()
     {
         // Only user with user_types admin can access this page
-        $this->authorize('admin');
+        $this->authorize('Admin');
         
         $user =  Auth::user();
         $authors = User::all();

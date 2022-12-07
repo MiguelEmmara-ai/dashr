@@ -11,6 +11,7 @@ use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -46,14 +47,21 @@ class AuthenticatedSessionController extends Controller
     {
         $user = User::where('username', $request->username)->first();
 
-        // Only ACTIVE user can log in, after use register they will need to be approve by admin
-        if ($user->user_status == 'PENDING') {
-            return Redirect::route('login')->with('error', "Your Account Is Still Pending Approval");
-        } else if ($user->user_status == 'SUSPEND') {
-            return Redirect::route('login')->with('error', "Your Account Has Been Suspended");
+        // user doesn't exist
+        if ($user === null) {
+            throw ValidationException::withMessages([
+                'username' => trans('auth.failed'),
+            ]);
+        } else if ($user !== null) {
+            // Only ACTIVE user can log in, after use register they will need to be approve by admin
+            if ($user->user_status == 'PENDING') {
+                return Redirect::route('login')->with('error', "Your Account Is Still Pending Approval");
+            } else if ($user->user_status == 'SUSPEND') {
+                return Redirect::route('login')->with('error', "Your Account Has Been Suspended");
+            }
         }
 
-        $request->authenticate();
+        $request->authenticate($request);
 
         $request->session()->regenerate();
 

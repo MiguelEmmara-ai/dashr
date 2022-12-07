@@ -32,7 +32,7 @@
                                                 loading="lazy">
                                         @else
                                             <img style="width: 290px;max-height:181px"
-                                                src="https://source.unsplash.com/1100x600?{{ $post->category->name }}"
+                                                src="https://via.placeholder.com/1200x800"
                                                 class="img-fluid" loading="lazy">
                                         @endif
                                     </td>
@@ -44,7 +44,7 @@
                                                 @if ($post->author->haveAvatar == true)
                                                     <a href="/?author={{ $post->author->username }}"><img
                                                             class="rounded-circle flex-shrink-0 me-3 fit-cover"
-                                                            width="40" src="{{ asset($post->author->avatar) }}"></a>
+                                                            width="40" src="{{ asset('storage/' . $post->author->avatar) }}"></a>
                                                 @else
                                                     <a href="/?author={{ $post->author->username }}"><img
                                                             class="rounded-circle flex-shrink-0 me-3 fit-cover"
