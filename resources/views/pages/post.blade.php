@@ -46,7 +46,7 @@
                             @if ($post->author->haveAvatar == true)
                                 <a href="/?author={{ $post->author->username }}"><img
                                         class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
-                                        src="{{ asset($post->author->avatar) }}"></a>
+                                        src="{{ asset('storage/' . $post->author->avatar) }}"></a>
                             @else
                                 <a href="/?author={{ $post->author->username }}"><img
                                         class="rounded-circle flex-shrink-0 me-3 fit-cover" width="40"
