@@ -32,7 +32,7 @@
                                                 loading="lazy">
                                         @else
                                             <img style="width: 290px;max-height:181px"
-                                                src="https://source.unsplash.com/1100x600?{{ $post->category->name }}"
+                                                src="https://via.placeholder.com/1200x800"
                                                 class="img-fluid" loading="lazy">
                                         @endif
                                     </td>

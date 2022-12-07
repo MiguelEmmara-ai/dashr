@@ -30,45 +30,35 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         DB::table('users')->insert([
-            'name' => 'Miguel Emmara',
-            'username' => 'miguelemmara',
-            'email' => 'miguelemmara123@gmail.com',
+            'name' => 'super admin',
+            'username' => 'admin',
+            'email' => 'admin@admin.com',
             'haveAvatar' => false,
             'default_avatar' => 'storage/default_avatar-1.jpg',
             'email_verified_at' => now(),
-            'password' => Hash::make('admin123'),
+            'password' => Hash::make('password'),
             'user_types' => 'admin',
             'user_status' => 'ACTIVE',
         ]);
 
         Avatar::create('Miguel Emmara')->save(storage_path('app/public/default_avatar-1.jpg'), 100);
 
-        User::factory(9)->create();
+        // Generate additional 4 authors (total 5)
+        User::factory(4)->create();
 
+        // Generate default Uncategorized category
         Category::create([
             'name' => 'Uncategorized',
             'slug' => 'uncategorized'
         ]);
 
-        Category::create([
-            'name' => 'Web Programming',
-            'slug' => 'web-programming'
-        ]);
+        // Generat 10 random post
+        Post::factory(10)->create();
 
-        Category::create([
-            'name' => 'Programming',
-            'slug' => 'programming'
-        ]);
-
-        Category::create([
-            'name' => 'Personal',
-            'slug' => 'personal'
-        ]);
-
-        Post::factory(30)->create();
-
+        // Generate default GeneralSetting
         GeneralSetting::factory(1)->create();
 
-        Category::factory(6)->create();
+        // Generate additional 4 authors (total 5)
+        Category::factory(4)->create();
     }
 }

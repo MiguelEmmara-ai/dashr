@@ -12,7 +12,7 @@
                                     <img src="{{ asset('storage/' . $post->image) }}" style="width: 290px;max-height:181px"
                                         class="img-fluid" loading="lazy">
                                 @else
-                                    <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}"
+                                    <img src="https://via.placeholder.com/1200x800"
                                         style="width: 290px;max-height:181px" class="img-fluid" loading="lazy">
                                 @endif
                             </a>
