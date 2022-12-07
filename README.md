@@ -1,66 +1,95 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
+# Dashr
+Blog CMS made with laravel framework.
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Dashr Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Intuitive Dashboard.
+- Responsive Themes.
+- Built-in SEO Tools.
+- Detailed Analytics.
+- Content Seeder.
+- Login and Registration.
+- Creating and editing content.
+- Blogger and role-based administration.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# Demo
+Front End [dashr.miguelemmara.me](https://dashr.miguelemmara.me/)
+<br>
+Dashboard [dashr.miguelemmara.me/login](https://dashr.miguelemmara.me/login)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Demo login
+``` 
+username: admin
+password: password
+```
 
-## Laravel Sponsors
+## Getting Started
+```shell
+git clone https://github.com/MiguelEmmara-ai/dashr.git dashr
+cd dashr
+cp .env.example .env
+composer install OR composer update
+php artisan key:generate
+nano .env << Configure .env
+```
+After opning your .env file, change the database name (DB_DATABASE) to whatever you have, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Then we can run
+```shell
+php artisan migrate:fresh --seed
+php artisan serve
+```
 
-### Premium Partners
+Premade auth
+```
+username: admin
+password: password
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+# How To Use
 
-## Contributing
+## Front End
+1. Register         - This page allow the new blogers register an account
+2. Login            - Login user, check if the users is on the records
+3. Become A Driver  - This page is for drivers to create their new account
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Dashboard
+1. Dashboard                       - Intuitive Dashboard with simple analytics
+2. Settings/General Settings       - Inbuild simple seo and website settings
+3. Settings/Accont Settings        - Edit user account information
+4. Post/Post                       - List all the post sort from recent post
+5. Post/Create Post                - Create post
+6. Categories/Categories           - List all the categories
+7. Categories/Create Categories    - Create Categories
+7. Authors/Authors                 - List all the Authors (Only for super admin)
 
-## Code of Conduct
+## Built With
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+This app build with below technologies
 
-## Security Vulnerabilities
+* [![HTML][HTML.com]][html-url]
+* [![CSS][CSS.com]][css-url]
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![Laravel][Laravel.com]][Laravel-url]
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## License
+# Screenshots
+![Screenshot 1](https://github.com/MiguelEmmara-ai/dashr/blob/master/public/screenshots/screencapture-dashr-dashboard-2022-12-02-16_21_51.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# License
+Copyright 2022. Code released under the MIT license.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[HTML.com]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[html-url]: https://www.w3schools.com/html/
+[CSS.com]: https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
+[css-url]: https://www.w3schools.com/css/
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
