@@ -62,7 +62,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="avatar" class="justify-content-start mb-2">Avatar (optional) </label>
+                                    <label for="avatar" class="d-flex justify-content-center mb-2">Avatar (optional)</label>
                                     <img class="img-preview img-fluid mb-3 col-sm-5">
                                     <input type="file" class="form-control @error('avatar') is-invalid @enderror"
                                         name="avatar" id="avatar" onchange="previewImage()" />
