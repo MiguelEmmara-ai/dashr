@@ -48,8 +48,9 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
+        $request->user()->update();
+
         if ($request->file('avatar')) {
-            dd($request->file('avatar'));
             if ($request->user()->avatar) {
                 FacadesStorage::delete($request->user()->avatar);
             }
@@ -63,8 +64,6 @@ class ProfileController extends Controller
                 ]);
         }
 
-        $request->user()->update();
-        
         return redirect()->back()->with('success', 'Profile Updated!');
     }
 

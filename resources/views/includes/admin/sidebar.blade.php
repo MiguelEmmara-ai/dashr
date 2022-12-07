@@ -92,7 +92,7 @@
         </li>
 
         {{-- Only Admin Can Have Access To Author Page --}}
-        @can('admin')
+        @can('Admin')
             {{-- Author --}}
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Author</span></li>
 

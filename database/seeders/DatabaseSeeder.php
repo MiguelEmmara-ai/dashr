@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'default_avatar' => 'storage/default_avatar-1.jpg',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'user_types' => 'admin',
+            'user_types' => 'Admin',
             'user_status' => 'ACTIVE',
         ]);
 

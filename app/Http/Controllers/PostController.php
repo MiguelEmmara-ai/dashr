@@ -137,7 +137,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        // Authorize if user is the owner of the post or user_types is 'admin'
+        // Authorize if user is the owner of the post or user_types is 'Admin'
         Gate::authorize('update-post', $post);
 
         // General Setting of the website
@@ -171,7 +171,7 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
 
-        // Authorize if user is the owner of the post or user_types is 'admin'
+        // Authorize if user is the owner of the post or user_types is 'Admin'
         Gate::authorize('update-post', $post);
 
         // Check if the slug has been change
