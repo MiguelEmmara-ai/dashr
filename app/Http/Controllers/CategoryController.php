@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Models\GeneralSetting;
 use App\Models\Post;
@@ -10,6 +12,7 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class CategoryController extends Controller
 {
@@ -32,7 +35,7 @@ class CategoryController extends Controller
             'site_title' => $general_setting->site_title,
             'logo_image' => $general_setting->logo_image,
             'footer_copyright' => $general_setting->footer_copyright,
-            'categories' => Category::latest()->paginate(8)->withQueryString(),
+            'categories' => Category::latest()->paginate(10)->withQueryString(),
             'user' => Auth::user()
         ]);
     }
@@ -67,14 +70,15 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:50', 'unique:categories'],
-            'slug' => ['required', 'unique:categories'],
-        ]);
-
         $data = $request->all();
+
+        // Save image file to storage/category-images
+        if ($request->file('image')) {
+            $data['image'] = $request->file('image')->store('category-images');
+        }
+
         Category::create($data);
 
         return Redirect::route('admin-categories.index')->with('success', "Success Create Category [$request->name]");
@@ -131,12 +135,8 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:50'],
-        ]);
-
         $data = $request->all();
 
         $category = Category::findOrFail($id);
@@ -144,6 +144,15 @@ class CategoryController extends Controller
         // Check if the slug has been change
         if ($request->slug != $category->slug) {
             $data['slug'] = $request->slug;
+        }
+
+        // Save image file to storage/category-images
+        if ($request->file('image')) {
+            // Will delete existing image before storing new images
+            if ($category->image) {
+                FacadesStorage::delete($category->image);
+            }
+            $data['image'] = $request->file('image')->store('category-images');
         }
 
         $category->update($data);
@@ -164,6 +173,11 @@ class CategoryController extends Controller
         // Prevent user to delete 'uncategorized' category
         if ($id == 1) {
             return Redirect::route('admin-categories.index')->with('error', 'Cannot Delete Uncategorized');
+        }
+
+        // Also delete that post image
+        if ($category->image) {
+            FacadesStorage::delete($category->image);
         }
 
         // Delete category record

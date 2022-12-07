@@ -7,17 +7,15 @@
                 <div class="container" style="background: #ffffff;margin-top: 10px;margin-bottom: 10px;">
                     <div class="row mb-2" style="padding-bottom: 10px;border-width: 2px;padding-top: 10px;">
                         <div class="col-md-3 justify-content-center">
-                            <div>
-                                <a href="{{ $post->slug }}">
-                                    @if ($post->image)
-                                        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid" loading="lazy">
-                                    @else
-                                        <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}"
-                                            class="img-fluid" loading="lazy">
-                                    @endif
-
-                                </a>
-                            </div>
+                            <a href="{{ $post->slug }}">
+                                @if ($post->image)
+                                    <img src="{{ asset('storage/' . $post->image) }}" style="width: 290px;max-height:181px"
+                                        class="img-fluid" loading="lazy">
+                                @else
+                                    <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}"
+                                        style="width: 290px;max-height:181px" class="img-fluid" loading="lazy">
+                                @endif
+                            </a>
                         </div>
 
                         <div class="col">

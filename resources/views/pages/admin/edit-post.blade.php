@@ -15,6 +15,7 @@
                             enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
+
                             <div class="form-group mb-3">
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror"
@@ -66,7 +67,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="image" class="form-label">Post Image</label>
+                                <label for="image" class="form-label">Thumbnail</label>
                                 @if ($post->image)
                                     <img src="{{ asset('storage/' . $post->image) }}"
                                         class="img-preview img-fluid mb-3 col-sm-5 d-block">

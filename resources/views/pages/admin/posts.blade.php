@@ -27,10 +27,12 @@
                                     <td><strong>{{ $post->title }}</strong></td>
                                     <td>
                                         @if ($post->image)
-                                            <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid"
+                                            <img style="width: 290px;max-height:181px"
+                                                src="{{ asset('storage/' . $post->image) }}" class="img-fluid"
                                                 loading="lazy">
                                         @else
-                                            <img src="https://source.unsplash.com/1100x600?{{ $post->category->name }}"
+                                            <img style="width: 290px;max-height:181px"
+                                                src="https://source.unsplash.com/1100x600?{{ $post->category->name }}"
                                                 class="img-fluid" loading="lazy">
                                         @endif
                                     </td>

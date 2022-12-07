@@ -11,7 +11,8 @@
                     <h5 class="card-header">Edit Category</h5>
                     <div class="card-body">
 
-                        <form action="{{ route('admin-categories.update', $category->id) }}" method="POST" class="mb-5">
+                        <form action="{{ route('admin-categories.update', $category->id) }}" method="POST" class="mb-5"
+                            enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
 
@@ -32,6 +33,24 @@
                                     value="{{ old('slug') ? old('slug') : $category->slug }}">
                                 @error('slug')
                                     <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="image" class="form-label">Thumbnail</label>
+                                @if ($category->image)
+                                    <img src="{{ asset('storage/' . $category->image) }}"
+                                        class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                @else
+                                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                                @endif
+
+                                <input class="form-control @error('image') is-invalid @enderror" type="file"
+                                    id="image" name="image" onchange="previewImage()">
+                                @error('image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
@@ -78,6 +97,17 @@
                 .then(response => response.json())
                 .then(data => slug.value = data.slug);
         });
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+            imgPreview.style.display = 'block';
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        };
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
