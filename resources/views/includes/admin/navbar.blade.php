@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="flex-grow-1">
                                                 <span class="fw-semibold d-block">{{ $user->name }}</span>
-                                                <small class="text-muted">Admin</small>
+                                                <small class="text-muted">{{ $user->user_types }}</small>
                                             </div>
                                         </div>
                                     </a>
