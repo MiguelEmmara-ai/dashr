@@ -35,7 +35,7 @@
                                 data-bs-toggle="dropdown">
                                 <div class="avatar avatar-online">
                                     @if ($user->haveAvatar == true)
-                                        <img src="{{ asset($user->avatar) }}" width="40"
+                                        <img src="{{ asset('storage/' . $user->avatar) }}" width="40"
                                             class="w-px-40 h-auto rounded-circle" />
                                     @else
                                         <img src="{{ asset($user->default_avatar) }}" width="40"
@@ -50,7 +50,7 @@
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
                                                     @if ($user->haveAvatar == true)
-                                                        <img src="{{ asset($user->avatar) }}" alt
+                                                        <img src="{{ asset('storage/' . $user->avatar) }}" alt
                                                             class="w-px-40 h-auto rounded-circle" />
                                                     @else
                                                         <img src="{{ asset($user->default_avatar) }}" alt

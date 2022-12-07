@@ -27,7 +27,7 @@
                                 <div class="d-flex align-items-start align-items-sm-center gap-4">
                                     @if ($user->haveAvatar == true)
                                         <img class="d-block rounded" alt="user-avatar" height="100" width="100"
-                                            id="uploadedAvatar" src="{{ asset($user->avatar) }}">
+                                            id="uploadedAvatar" src="{{ asset('storage/' . $user->avatar) }}">
                                     @else
                                         <img class="d-block rounded" alt="user-avatar" height="100" width="100"
                                             id="uploadedAvatar" src="{{ asset($user->default_avatar) }}">
