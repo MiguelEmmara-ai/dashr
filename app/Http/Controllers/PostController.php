@@ -178,10 +178,7 @@ class PostController extends Controller
         if ($request->slug != $post->slug) {
             $data['slug'] = 'required|unique:posts';
         }
-
-        // Save user_id from the logged in user id
-        $data['user_id'] = auth()->user()->id;
-
+        
         // Save and limit excerpt by 100 char from body text
         $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
