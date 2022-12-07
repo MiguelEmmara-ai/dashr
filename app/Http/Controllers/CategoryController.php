@@ -35,7 +35,7 @@ class CategoryController extends Controller
             'site_title' => $general_setting->site_title,
             'logo_image' => $general_setting->logo_image,
             'footer_copyright' => $general_setting->footer_copyright,
-            'categories' => Category::latest()->paginate(10)->withQueryString(),
+            'categories' => Category::latest()->orderBy('id', 'desc')->paginate(10)->withQueryString(),
             'user' => Auth::user()
         ]);
     }
