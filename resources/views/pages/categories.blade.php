@@ -16,7 +16,7 @@
                             @if ($category->image)
                                 <img class="img-fluid" style="width: 800px;height:250px" src="{{ asset('storage/' . $category->image) }}">
                             @else
-                                <img class="img-fluid" style="width: 800px;height:250px" src="https://via.placeholder.com/1200x800">
+                                <img class="img-fluid" style="width: 800px;height:250px" src="https://picsum.photos/1200/800">
                             @endif
 
                             <p>{{ $category->name }}</p>

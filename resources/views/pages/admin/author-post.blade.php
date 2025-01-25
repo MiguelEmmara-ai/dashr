@@ -30,7 +30,7 @@
                                             <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid"
                                                 loading="lazy">
                                         @else
-                                            <img src="https://via.placeholder.com/1200x800"
+                                            <img src="https://picsum.photos/1200/800"
                                                 class="img-fluid" loading="lazy">
                                         @endif
                                     </td>
